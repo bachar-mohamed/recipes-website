@@ -6,10 +6,7 @@
 
 html {
   font-size: 62.5%;
-}
-
-body {
-  font-family: "Old Standard TT", Arial, sans-serif;
+  font-family: "Lexend", sans-serif;
 }
 
 li {
@@ -105,6 +102,8 @@ main {
   display: flex;
   flex-direction: column;
 }
+
+/*landing page styling*/
 
 .homepage-image {
   height: 100vh;
@@ -408,24 +407,27 @@ main {
   font-size: 1.8rem;
 }
 
+/*recipe ingredients page styling */
+
 .prod-details_container {
   width: 100%;
   height: 100vh;
   border: 2px solid green;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  align-items: center;
   justify-items: center;
+  place-items: center;
 }
 
 .prod-img {
-  width: 80%;
-  height: 70%;
+  width: 60rem;
+  height: 40rem;
 }
 
 .prod-details {
   padding: 2rem;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -434,9 +436,12 @@ main {
 }
 
 .category {
-  padding: 0.5em 2em;
+  padding: 0.5em 1.5em;
+  font-size: 1.8rem;
+  text-transform: capitalize;
+  font-weight: 600;
   border: 1px solid black;
-  border-radius: 2em;
+  border-radius: 0.5em;
 }
 
 .title {
@@ -446,7 +451,6 @@ main {
 
 .container {
   width: 20rem;
-  border: 2px solid black;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -454,7 +458,6 @@ main {
 }
 
 .container > div {
-  border: 2px solid green;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -463,17 +466,36 @@ main {
 
 .ingredients-container {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
 .ingredients-container > ul {
-  border: 2px solid black;
+  border: 2px solid brown;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(auto-fill, minmax(2rem, 1fr));
-  grid-auto-rows: 1fr;
-  grid-auto-flow: row;
-  gap: 2rem;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ingredients-container > ul > li {
+  font-size: 1.4rem;
+}
+
+.ingredients-container > ul > li > span {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #bf9410;
 }
 
 .buttons-container {
@@ -561,6 +583,8 @@ main {
   bottom: 8%;
   opacity: 1;
 }
+
+/*store styling */
 
 .page-poster {
   position: relative;
