@@ -28,7 +28,7 @@ section {
   align-items: center;
 }
 
-a:hover() {
+a:hover {
   cursor: pointer;
 }
 
@@ -156,7 +156,7 @@ main {
   height: 100rem;
   background: linear-gradient(to bottom, black, #d4b461, white);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-items: center;
   align-items: center;
   padding: 4rem;
@@ -167,15 +167,26 @@ main {
   height: 40cqh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding: 1rem;
   align-items: center;
   border-radius: 1rem;
   box-shadow: 4px 4px 15px -3px black;
 }
 
+.store-highlights > li > h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
 .store-highlights > li > p {
   text-align: center;
+  font-size: 1.6rem;
+}
+
+.store-highlights > li > svg {
+  width: 10rem;
+  height: 10rem;
 }
 
 .qualities-area {
@@ -284,12 +295,29 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10rem;
+  gap: 6rem;
 }
 
 .products-categories > li {
   font-size: 2rem;
   text-transform: uppercase;
+  padding: 1em 2em;
+  transition-property: background-color, color, font-weight;
+  transition-duration: 0.5s;
+  border-radius: 1rem;
+}
+
+.featured:hover {
+  background-color: #bf9410;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+.featured-clicked {
+  background-color: #bf9410;
+  font-weight: 600;
+  color: white;
 }
 
 .products-display {

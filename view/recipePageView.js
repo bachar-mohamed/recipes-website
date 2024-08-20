@@ -1,6 +1,6 @@
 import view from "./view.js";
 
-class ProductPageView extends view {
+class RecipePageView extends view {
   _parent = document.querySelector("main");
   _trigger;
   _bookmarkBtn;
@@ -11,7 +11,7 @@ class ProductPageView extends view {
          <section class="prod-details_container">
         <img src="${this._data[0].image_url}" class="prod-img"/>
         <div class="prod-details">
-          <h3 class="category">${this._data[1]}</h3>
+          <h3 class="category">${this._data[1].keyword}</h3>
           <h1 class="title">${this._data[0].title}</h1>
           <div class="container">
             <div class="duration">
@@ -51,7 +51,7 @@ class ProductPageView extends view {
       <section class="similar-products">
         <h1>you may also like</h1>
         <ul>
-        ${this._data[2]
+        ${this._data[1].results
           .map((prod) => {
             return `
           <li class="suggested-product">
@@ -109,4 +109,4 @@ class ProductPageView extends view {
   }
 }
 
-export default new ProductPageView();
+export default new RecipePageView();

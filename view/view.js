@@ -56,8 +56,14 @@ export default class View {
       return this.errorRanderer();
     this._data = data;
     const newMarkUp = this._generateMarkup();
+    console.log("new markup");
+    console.log(newMarkUp);
     const newDom = document.createRange().createContextualFragment(newMarkUp);
+    console.log("new dom");
+    console.log(newDom);
     const newElements = Array.from(newDom.querySelectorAll("*"));
+    console.log("new elements");
+    console.log(newElements);
     const currElement = Array.from(this._parent.querySelectorAll("*"));
 
     newElements.forEach((el, i) => {
