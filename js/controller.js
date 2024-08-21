@@ -38,6 +38,7 @@ const init = function () {
   recipeView._showButtons();
   recipeView._hideButtons();
   recipeView._productClickHandler(loadProductPage);
+  recipeView._servingAdjuster();
   recipeView._loadMoreButtonHandler(loadShopView);
   shopView._optionClickHandler(loadShopView);
   shopView._searchProductHandler(loadShopView);
