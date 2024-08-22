@@ -9,6 +9,10 @@ const featuredProdLoader = async function (keyword) {
   landingView._colapsibleTextHandler();
 };
 
+const addIdToBookarks = function (id) {
+  model.pushToBookeMarks(id);
+};
+
 const loadProductPage = async function (id) {
   await model.getRecipe(id);
   await model.getFeaturedRecipes(model.state.fetchedRecipes.keyword);
@@ -50,6 +54,7 @@ const init = function () {
   shopView._searchProductHandler(loadShopView);
   shopView._pageButtonClickHandler(loadNextPage);
   shopView._arrowButtonClickHandler(loadNextPage);
+  shopView._addToBookMark(addIdToBookarks);
 };
 
 init();

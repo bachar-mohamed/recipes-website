@@ -220,7 +220,7 @@ class LandingPageView extends view {
               </div>
             </div>
           <div class="img-container">
-            <img src="/resources/tall_image.jpg" class="qualities-area_image" />
+            <img src="/tall_image.3be62d00.jpg" class="qualities-area_image" >
           </div>
         </div>
         <div class="featured-products">

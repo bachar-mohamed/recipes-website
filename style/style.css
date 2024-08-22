@@ -183,7 +183,7 @@ main {
 
 .store-highlights > li > p {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .store-highlights > li > svg {
@@ -205,7 +205,7 @@ main {
   width: 100%;
   height: 100%;
   display: flex;
-  padding: 3rem;
+  padding: 0rem 3rem;
   flex-direction: column;
   justify-content: flex-start;
   gap: 4rem;
@@ -251,6 +251,7 @@ main {
 
 .title-area > h1 {
   font-size: 2rem;
+  font-weight: 500;
 }
 
 .p-container {
@@ -273,13 +274,14 @@ main {
 
 .img-container {
   width: 100%;
-  height: 100%;
+  height: 65rem;
   box-shadow: 0px 0px 10px -1px black;
 }
 
 .qualities-area_image {
-  max-width: 100%;
+  width: 100%;
   height: 100%;
+  background-position: center;
 }
 
 .featured-products {
@@ -289,7 +291,7 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 2rem;
+
   padding: 2rem 20rem;
 }
 .featured-products_headings {
@@ -306,6 +308,12 @@ main {
 .featured-products_headings > h1 {
   color: #bf9410;
   font-size: 5rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.featured-products_headings > h2 {
+  font-size: 2rem;
   font-weight: 500;
   text-transform: capitalize;
 }
@@ -349,7 +357,7 @@ main {
   width: 100%;
   height: 50rem;
   display: grid;
-  gap: 2rem;
+  column-gap: 2rem;
   margin-bottom: 3rem;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(2, 1fr);
@@ -358,10 +366,17 @@ main {
 .product {
   border-bottom: 1px solid grey;
   display: flex;
+  padding: 0.4rem;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: 2rem;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+.product:hover {
+  background-color: rgb(230, 227, 227);
 }
 
 .product > img {
@@ -377,11 +392,13 @@ main {
 
 .product-name {
   font-size: 2.2rem;
+  font-weight: 500;
   text-transform: capitalize;
 }
 
 .autor {
   font-size: 1.6rem;
+  font-weight: 500;
   color: #bf9410;
 }
 
@@ -660,63 +677,11 @@ svg {
   line-height: 5rem;
 }
 
-.bookmark-btn {
-  background-color: #d4b461;
-  position: absolute;
-  width: 3.3rem;
-  height: 4.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 0.4rem;
-  align-items: center;
-  opacity: 0;
-  top: 0%;
-  right: 8%;
-  border-radius: 0.2rem;
-  transition-property: top, opacity;
-  transition-duration: 0.5s;
-}
-
-.bookmark-svg {
-  width: 2rem;
-  height: 2.5rem;
-}
-
 .selected {
   color: white;
   background-color: darkgoldenrod;
   border-radius: 2rem;
   padding: 0.5rem 2rem;
-}
-
-.reveal-bookmark {
-  top: 8%;
-  opacity: 1;
-}
-
-.prod-link {
-  position: absolute;
-  width: fit-content;
-  border: none;
-  opacity: 0;
-  text-decoration: none;
-  background-color: #bf9410;
-  padding: 0.3em 2em;
-  border-radius: 0.5em;
-  left: 0;
-  right: 0;
-  bottom: 0%;
-  margin: auto;
-  color: white;
-  font-size: 2rem;
-  transition-property: bottom, opacity;
-  transition-duration: 0.5s;
-}
-
-.reveal-link {
-  bottom: 8%;
-  opacity: 1;
 }
 
 /*store styling */
@@ -829,7 +794,6 @@ nav > h1 {
 }
 
 .list-count_container {
-  /*  border: 2px solid black;*/
   width: 100%;
   height: 100%;
   padding: 0rem 3rem;
@@ -901,8 +865,69 @@ nav > h1 {
   transition-duration: 0.5s;
 }
 
+.bookmark-btn {
+  background-color: #d4b461;
+  position: absolute;
+  width: 2.7rem;
+  height: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0.4rem;
+  align-items: center;
+  opacity: 0;
+  top: 0%;
+  right: 8%;
+  border-radius: 0.2rem;
+  transition-property: top, opacity;
+  transition-duration: 0.5s;
+}
+
+.bookmark-svg {
+  width: 2rem;
+  height: 2.5rem;
+}
+
+.suggested-img.bookmarked .bookmark-btn {
+  top: 8%;
+  opacity: 1;
+}
+
+.suggested-img.focused .bookmark-btn {
+  top: 8%;
+  opacity: 1;
+}
+
+.suggested-img.focused .prod-link {
+  bottom: 8%;
+  opacity: 1;
+}
+
+.prod-link {
+  position: absolute;
+  width: fit-content;
+  border: none;
+  opacity: 0;
+  text-decoration: none;
+  background-color: #bf9410;
+  padding: 0.3em 2em;
+  border-radius: 0.5em;
+  left: 0;
+  right: 0;
+  bottom: 0%;
+  margin: auto;
+  color: white;
+  font-size: 2rem;
+  transition-property: bottom, opacity;
+  transition-duration: 0.5s;
+}
+
 .zoom-in {
   background-size: 120% 120%;
+}
+
+.suggested-img.bookmarked::before {
+  background-color: rgb(0, 0, 0, 0.4);
 }
 
 .suggested-img::before {

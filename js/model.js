@@ -14,6 +14,13 @@ const state = {
     results: [],
   },
   recipe: {},
+  bookmarks: [],
+};
+
+const pushToBookeMarks = function (recipeId) {
+  state.bookmarks.push(recipeId);
+  console.log("bookmarks array contains: ");
+  console.log(state.bookmarks);
 };
 
 const getFeaturedRecipes = async function (
@@ -84,4 +91,10 @@ function shuffle(array) {
   return temp;
 }
 
-export { state, getFeaturedRecipes, getRecipe, getPartialRecipes };
+export {
+  state,
+  getFeaturedRecipes,
+  getRecipe,
+  getPartialRecipes,
+  pushToBookeMarks,
+};

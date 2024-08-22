@@ -39,7 +39,7 @@ class ShopView extends View {
               return `
             <li class="suggested-product">
               <div style="background-image:url(${product.image_url});" class="suggested-img">
-                <div class="bookmark-btn">
+                <div class="bookmark-btn" data-id=${product.id}>
                <svg class="bookmark-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20.62"><polygon points="14 0 0 0 0 20.62 7 17.12 14 20.62 14 0" style="fill:#fff"/></svg>
                 </div>
                 <a href="#" data-id=${product.id} class="prod-link">visit</a>
@@ -80,6 +80,21 @@ class ShopView extends View {
       </section>
 
         `;
+  }
+
+  _addToBookMark(handler) {
+    this._parent.addEventListener("click", (e) => {
+      if (!e.target.closest(".bookmark-btn")) return;
+      const trigger = e.target.closest(".bookmark-btn");
+      const parent = trigger.closest(".suggested-img");
+      if (parent.classList.contains("bookmarked")) {
+        parent.classList.remove("bookmarked");
+      } else {
+        parent.classList.add("bookmarked");
+        handler(trigger.dataset.id);
+      }
+      console.log(`the id is: ${trigger.dataset.id}`);
+    });
   }
 
   _pageButtonClickHandler(handler) {

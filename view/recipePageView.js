@@ -130,11 +130,8 @@ class RecipePageView extends view {
         return;
       this._trigger = e.target.closest("li");
       this._prodImage = this._trigger.querySelector(".suggested-img");
-      this._bookmarkBtn = this._trigger.querySelector(".bookmark-btn");
-      this._link = this._trigger.querySelector(".prod-link");
       this._prodImage.classList.add("zoom-in");
-      this._bookmarkBtn.classList.add("reveal-bookmark");
-      this._link.classList.add("reveal-link");
+      this._prodImage.classList.add("focused");
     });
   }
 
@@ -142,9 +139,8 @@ class RecipePageView extends view {
     this._parent.addEventListener("mouseout", (e) => {
       if (!e.target.closest("li").classList.contains("suggested-product"))
         return;
-      this._bookmarkBtn.classList.remove("reveal-bookmark");
-      this._link.classList.remove("reveal-link");
       this._prodImage.classList.remove("zoom-in");
+      this._prodImage.classList.remove("focused");
     });
   }
 
