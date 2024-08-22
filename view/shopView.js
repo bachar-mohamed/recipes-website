@@ -20,26 +20,28 @@ class ShopView extends View {
           <div>
             <h1 class="title">shop by</h1>
             <nav>
-              <h1 class="product" data-keyword="pizza">pizza</h1>
-              <h1 class="product" data-keyword="tacos">tacos</h1>
-              <h1 class="product" data-keyword="burger">burger</h1>
-              <h1 class="product" data-keyword="grill">grill</h1>
-              <h1 class="product" data-keyword="pasta">pasta</h1>
+              <h1 class="recipe-name" data-keyword="pizza">pizza</h1>
+              <h1 class="recipe-name" data-keyword="tacos">tacos</h1>
+              <h1 class="recipe-name" data-keyword="burger">burger</h1>
+              <h1 class="recipe-name" data-keyword="grill">grill</h1>
+              <h1 class="recipe-name" data-keyword="pasta">pasta</h1>
             </nav>
           </div>
         </aside>
         <div class="list-count_container">
           <div class="list-count">
-            <p><span>${this._data[0].totalProducts}</span> products found</p>
+            <p><span>${this._data.totalProducts}</span> products found</p>
             <hr />
           </div>
           <ul class="products-ul">
-          ${this._data[0].results
+          ${this._data.results
             .map((product) => {
               return `
             <li class="suggested-product">
               <div style="background-image:url(${product.image_url});" class="suggested-img">
-                <div class="bookmark-btn"></div>
+                <div class="bookmark-btn">
+               <svg class="bookmark-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20.62"><polygon points="14 0 0 0 0 20.62 7 17.12 14 20.62 14 0" style="fill:#fff"/></svg>
+                </div>
                 <a href="#" data-id=${product.id} class="prod-link">visit</a>
               </div>
               <h1>${product.title}</h1>
@@ -49,21 +51,21 @@ class ShopView extends View {
             .join("")}
           </ul>
           <div class="page-btn_container ${
-            this._data[0].totalPages <= 1 ? "hidden" : ""
+            this._data.totalPages <= 1 ? "hidden" : ""
           }">
             <div class="arrow left-arrow ${
-              this._data[0].currentPage == 1 ? "hidden" : ""
-            }"></div>
+              this._data.currentPage == 1 ? "hidden" : ""
+            }">&larr;</div>
             <ul class="page-number">
-              ${new Array(this._data[0].totalPages)
+              ${new Array(this._data.totalPages)
                 .fill("")
                 .map((_, index, array) => {
                   console.log(`index: ${index + 1}`);
-                  console.log(`data index: ${this._data[0].currentPage}`);
-                  console.log(this._data[0].currentPage == index + 1);
+                  console.log(`data index: ${this._data.currentPage}`);
+                  console.log(this._data.currentPage == index + 1);
                   return `
                 <li class="page-btn ${
-                  this._data[0].currentPage == index + 1 ? "page-selected" : ""
+                  this._data.currentPage == index + 1 ? "page-selected" : ""
                 }" data-position="${index + 1 == array.length ? "last" : ""}">${
                     index + 1
                   }</li>`;
@@ -71,10 +73,8 @@ class ShopView extends View {
                 .join("")}
             </ul>
             <div class=" arrow right-arrow ${
-              this._data[0].currentPage == this._data[0].totalPages
-                ? "hidden"
-                : ""
-            }"></div>
+              this._data.currentPage == this._data.totalPages ? "hidden" : ""
+            }">&rarr;</div>
           </div>
         </div>
       </section>
@@ -94,16 +94,16 @@ class ShopView extends View {
     this._parent.addEventListener("click", (e) => {
       if (!e.target.classList.contains("arrow")) return;
       if (e.target.classList.contains("left-arrow")) {
-        handler(this._data[0].currentPage - 1);
+        handler(this._data.currentPage - 1);
       } else {
-        handler(this._data[0].currentPage + 1);
+        handler(this._data.currentPage + 1);
       }
     });
   }
 
   _optionClickHandler(handler) {
     this._parent.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("product")) return;
+      if (!e.target.classList.contains("recipe-name")) return;
       handler(e.target.dataset.keyword);
     });
   }
@@ -119,12 +119,13 @@ class ShopView extends View {
 
   _highlightCurrent() {
     console.log("hello");
-    this._parent.querySelectorAll(".product").forEach((element) => {
+    this._parent.querySelectorAll(".recipe-name").forEach((element) => {
       console.log(
-        `${element.dataset.keyword.toLowerCase()} == ${this._data[1].toLowerCase()}`
+        `${element.dataset.keyword.toLowerCase()} == ${this._data.keyword.toLowerCase()}`
       );
       if (
-        element.dataset.keyword.toLowerCase() === this._data[1].toLowerCase()
+        element.dataset.keyword.toLowerCase() ===
+        this._data.keyword.toLowerCase()
       ) {
         element.classList.add("selected");
       }
