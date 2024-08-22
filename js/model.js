@@ -36,7 +36,7 @@ const getPartialRecipes = async function (
   try {
     const url = `${APIURL}${keyword}&key=${KEY}`;
     const data = await jsonCall(url);
-    if (data.length > 0) state.keyword = keyword;
+    if (data.length > 0) state.fetchedRecipes.keyword = keyword;
     state.fetchedRecipes.totalProducts = data.length;
     state.fetchedRecipes.totalPages = Math.ceil(
       data.length / state.fetchedRecipes.resultsPerPage

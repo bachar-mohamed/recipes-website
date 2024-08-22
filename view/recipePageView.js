@@ -4,7 +4,9 @@ class RecipePageView extends view {
   _parent = document.querySelector("main");
   _trigger;
   _bookmarkBtn;
+  _prodImage;
   _link;
+  _counter = 1;
 
   _generateMarkup() {
     return `
@@ -65,13 +67,14 @@ class RecipePageView extends view {
         <h1>you may also like</h1>
         <div class="similar-products_container">
         <button class="left-arrow" type="button">&larr;</button>
-        <ul>
+        <ul class="similar-products_list">
         ${this._data[1].results
           .map((prod) => {
             return `
           <li class="suggested-product">
             <div style="background-image:url(${prod.image_url});" class="suggested-img">
-              <div class="bookmark-btn"></div>
+              <div class="bookmark-btn">
+               <svg class="bookmark-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20.62"><polygon points="14 0 0 0 0 20.62 7 17.12 14 20.62 14 0" style="fill:#fff"/></svg></div>
               <button class="prod-link" data-id=${prod.id}>visit</button>
             </div>
             <h1>${prod.title}</h1>
@@ -126,17 +129,12 @@ class RecipePageView extends view {
       if (!e.target.closest("li").classList.contains("suggested-product"))
         return;
       this._trigger = e.target.closest("li");
+      this._prodImage = this._trigger.querySelector(".suggested-img");
       this._bookmarkBtn = this._trigger.querySelector(".bookmark-btn");
       this._link = this._trigger.querySelector(".prod-link");
+      this._prodImage.classList.add("zoom-in");
       this._bookmarkBtn.classList.add("reveal-bookmark");
       this._link.classList.add("reveal-link");
-    });
-  }
-
-  _loadMoreButtonHandler(handler) {
-    this._parent.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("show-all")) return;
-      handler();
     });
   }
 
@@ -146,6 +144,32 @@ class RecipePageView extends view {
         return;
       this._bookmarkBtn.classList.remove("reveal-bookmark");
       this._link.classList.remove("reveal-link");
+      this._prodImage.classList.remove("zoom-in");
+    });
+  }
+
+  _slideToLeft() {
+    const rightArrow = this._parent.querySelector(".right-arrow");
+    const container = this._parent.querySelector(".similar-products_list");
+    const gap =
+      Number.parseInt(getComputedStyle(container).rowGap) * this._counter;
+    const padding = 20 * this._counter;
+    rightArrow.addEventListener("click", (e) => {
+      this._parent.querySelectorAll(".suggested-product").forEach((product) => {
+        const translationAmount =
+          Number.parseInt(getComputedStyle(product).width) * this._counter;
+        product.style.transform = `translateX(-${
+          translationAmount + gap + padding
+        }px)`;
+      });
+      this._counter++;
+    });
+  }
+
+  _loadMoreButtonHandler(handler) {
+    this._parent.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("show-all")) return;
+      handler();
     });
   }
 }

@@ -13,11 +13,16 @@ const loadProductPage = async function (id) {
   await model.getFeaturedRecipes(model.state.fetchedRecipes.keyword);
   recipeView.render([model.state.recipe, model.state.fetchedRecipes]);
   recipeView._scrollViewUp();
+  recipeView._slideToLeft();
 };
 
 const loadShopView = async function (keyword) {
   await model.getPartialRecipes(keyword);
   shopView.render(model.state.fetchedRecipes);
+  console.log("keyword from view");
+  console.log(keyword);
+  console.log("keyword from model");
+  console.log(model.state.fetchedRecipes.keyword);
   shopView._highlightCurrent();
   shopView._scrollViewUp();
 };

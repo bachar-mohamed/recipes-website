@@ -9,6 +9,10 @@ html {
   font-family: "Lexend", sans-serif;
 }
 
+body {
+  background-color: #f4f4f3;
+}
+
 li {
   list-style: none;
 }
@@ -605,7 +609,7 @@ svg {
   border-color: transparent;
 }
 
-.similar-products ul {
+.similar-products_list {
   width: 80%;
   display: flex;
   justify-content: space-around;
@@ -615,6 +619,11 @@ svg {
   gap: 7rem;
   padding: 2rem;
   overflow: hidden;
+}
+
+.similar-products_list li {
+  transition-property: transform;
+  transition-duration: 0.5s;
 }
 
 .show-all {
@@ -630,15 +639,26 @@ svg {
 }
 
 .bookmark-btn {
-  width: 2rem;
-  height: 2rem;
-  background-color: aliceblue;
+  background-color: #d4b461;
   position: absolute;
+  width: 3.3rem;
+  height: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0.4rem;
+  align-items: center;
   opacity: 0;
   top: 0%;
   right: 8%;
+  border-radius: 0.2rem;
   transition-property: top, opacity;
   transition-duration: 0.5s;
+}
+
+.bookmark-svg {
+  width: 2rem;
+  height: 2.5rem;
 }
 
 .selected {
@@ -659,9 +679,9 @@ svg {
   border: none;
   opacity: 0;
   text-decoration: none;
-  background-color: chocolate;
+  background-color: #bf9410;
   padding: 0.3em 2em;
-  border-radius: 2em;
+  border-radius: 0.5em;
   left: 0;
   right: 0;
   bottom: 0%;
@@ -708,7 +728,7 @@ svg {
   padding: 3rem 0rem;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 3rem;
+  gap: 1rem;
   align-items: flex-start;
 }
 
@@ -733,27 +753,40 @@ aside > div {
 }
 
 .search-container > div {
+  width: fit-content;
   display: flex;
   flex-direction: row;
+  padding: 0.2rem;
   justify-content: flex-start;
+  background-color: white;
+  box-shadow: 0px 0px 2px -1px black;
+  border-radius: 0.5rem;
   gap: 1rem;
   align-items: center;
 }
 
 .search-container > div > input {
   width: 20rem;
-  height: 3rem;
-  border: 1px solid green;
+  border: none;
   border-radius: 2rem;
   padding: 1rem;
+  font-size: 1.2rem;
+}
+
+.search-container > div > input:focus {
+  outline-color: transparent;
 }
 
 .search-container > div > button {
-  width: 6rem;
-  height: 3rem;
-  border-radius: 2rem;
+  width: 7rem;
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  font-weight: 400;
+  height: 3.5rem;
+  border-radius: 0.5rem;
+  background-color: #bf9410;
+  color: white;
   border: none;
-  box-shadow: 0px 0px 5px -1px black;
 }
 
 nav {
@@ -768,17 +801,20 @@ nav {
 
 nav > h1 {
   font-size: 1.6rem;
+  font-weight: 500;
   text-transform: capitalize;
+  text-decoration: none;
 }
 
 .list-count_container {
-  border: 2px solid black;
+  /*  border: 2px solid black;*/
   width: 100%;
+  height: 100%;
   padding: 0rem 3rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .list-count {
@@ -792,11 +828,19 @@ nav > h1 {
 }
 
 .list-count > hr {
-  width: 90%;
+  width: 85%;
 }
 
 .list-count > p {
   width: fit-content;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.list-count span {
+  color: #d4b461;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .products-ul {
@@ -808,11 +852,12 @@ nav > h1 {
 }
 
 .suggested-product {
+  background-color: white;
   width: 32rem;
   height: 40rem;
-  border: 2px solid black;
   flex-shrink: 0;
-  border-radius: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 3px -1px black;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -823,14 +868,37 @@ nav > h1 {
 
 .suggested-img {
   position: relative;
-  border: 2px solid black;
+  box-shadow: 0px 0px 3px -1px black;
   width: 100%;
   height: 30rem;
-  border-radius: 2rem;
-  background-image: url("/resources/background.jpg");
+  border-radius: 0.5rem;
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
+  transition-property: background-size;
+  transition-duration: 0.5s;
+}
+
+.zoom-in {
+  background-size: 120% 120%;
+}
+
+.suggested-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+.suggested-img:hover::before {
+  background-color: rgb(0, 0, 0, 0.4);
+}
+
+.suggested-product h1 {
+  font-size: 1.6rem;
+  font-weight: 500;
 }
 
 .page-btn_container {
@@ -840,7 +908,6 @@ nav > h1 {
   justify-content: center;
   gap: 8px;
   align-items: center;
-  height: 5rem;
 }
 
 .page-btn_container > ul {
@@ -853,17 +920,19 @@ nav > h1 {
 }
 
 .page-btn {
-  background-color: green;
-  color: white;
-  font-size: 1.2rem;
-  padding: 1em;
-  border-radius: 50%;
+  background-color: white;
+  color: rgb(37, 37, 37);
+  font-size: 1.4rem;
+  font-weight: 400;
+  border: 1px solid #bf9410;
+  padding: 1.5em;
+  border-radius: 1rem;
 }
 .page-selected {
   background-color: #bf9410;
+  color: white;
 }
 .arrow {
-  background-color: purple;
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
