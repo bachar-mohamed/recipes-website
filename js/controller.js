@@ -6,6 +6,7 @@ import shopView from "../view/shopView.js";
 const featuredProdLoader = async function (keyword) {
   await model.getFeaturedRecipes(keyword);
   landingView.render(model.state.fetchedRecipes);
+  landingView._colapsibleTextHandler();
 };
 
 const loadProductPage = async function (id) {

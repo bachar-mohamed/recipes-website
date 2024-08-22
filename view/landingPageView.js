@@ -145,56 +145,80 @@ class LandingPageView extends view {
               </p>
             </div>
             <div class="content-area_container">
-              <div class="content-area">
+              <div class="content-area active">
                 <div class="title-area">
                   <h1>quality 1</h1>
-                  <div class="extend-btn"></div>
+                  <svg class="extend-btn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 847 1058.75" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
+   
+    .fil0 {fill:black}
+   
+  </style></defs><g><path class="fil0" d="M242 298l181 185 182 -185c24,-25 65,16 40,41l-205 211c-9,9 -24,9 -32,0l-207 -211c-24,-25 17,-66 41,-41z"/></g></svg>
                 </div>
-                <p>
+                <div class="p-container">
+                <p >
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
                   omnis quibusdam maxime earum distinctio repudiandae, esse
                   aperiam deserunt quos quis consequatur officia ducimus aliquam
                   asperiores voluptate blanditiis, saepe odit officiis.
                 </p>
+                </div>
               </div>
-              <div class="content-area">
+              <div class="content-area active">
                 <div class="title-area">
                   <h1>quality 2</h1>
-                  <div class="extend-btn"></div>
+                  <svg class="extend-btn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 847 1058.75" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
+   
+    .fil0 {fill:black}
+   
+  </style></defs><g><path class="fil0" d="M242 298l181 185 182 -185c24,-25 65,16 40,41l-205 211c-9,9 -24,9 -32,0l-207 -211c-24,-25 17,-66 41,-41z"/></g></svg>
                 </div>
+                <div class="p-container">
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
                   omnis quibusdam maxime earum distinctio repudiandae, esse
                   aperiam deserunt quos quis consequatur officia ducimus aliquam
                   asperiores voluptate blanditiis, saepe odit officiis.
                 </p>
+                </div>
               </div>
-              <div class="content-area">
+              <div class="content-area active">
                 <div class="title-area">
                   <h1>quality 3</h1>
-                  <div class="extend-btn"></div>
+                  <svg class="extend-btn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 847 1058.75" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
+   
+    .fil0 {fill:black}
+   
+  </style></defs><g><path class="fil0" d="M242 298l181 185 182 -185c24,-25 65,16 40,41l-205 211c-9,9 -24,9 -32,0l-207 -211c-24,-25 17,-66 41,-41z"/></g></svg>
                 </div>
+                <div class="p-container">
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
                   omnis quibusdam maxime earum distinctio repudiandae, esse
                   aperiam deserunt quos quis consequatur officia ducimus aliquam
                   asperiores voluptate blanditiis, saepe odit officiis.
                 </p>
+                </div>
               </div>
-              <div class="content-area">
+              <div class="content-area active">
                 <div class="title-area">
                   <h1>quality 4</h1>
-                  <div class="extend-btn"></div>
+                  <svg class="extend-btn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 847 1058.75" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
+   
+    .fil0 {fill:black}
+   
+  </style></defs><g><path class="fil0" d="M242 298l181 185 182 -185c24,-25 65,16 40,41l-205 211c-9,9 -24,9 -32,0l-207 -211c-24,-25 17,-66 41,-41z"/></g></svg>
                 </div>
+                <div class="p-container">
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
                   omnis quibusdam maxime earum distinctio repudiandae, esse
                   aperiam deserunt quos quis consequatur officia ducimus aliquam
                   asperiores voluptate blanditiis, saepe odit officiis.
                 </p>
+                </div>
+                </div>
               </div>
             </div>
-          </div>
           <div class="img-container">
             <img src="/resources/tall_image.jpg" class="qualities-area_image" />
           </div>
@@ -270,6 +294,15 @@ class LandingPageView extends view {
         </div>
       </section>
 `;
+  }
+
+  _colapsibleTextHandler() {
+    this._parent.addEventListener("click", (e) => {
+      if (!e.target.closest(".title-area")) return;
+      const trigger = e.target.closest(".title-area");
+      trigger.querySelector(".extend-btn").classList.toggle("rotate-btn");
+      trigger.closest(".content-area").classList.toggle("active");
+    });
   }
 
   _productClickHandler(handler) {
