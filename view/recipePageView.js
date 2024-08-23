@@ -58,7 +58,13 @@ class RecipePageView extends view {
             <a href="${
               this._data[0].source_url
             } target="_blank"">how to cook</a>
-            <button>bookmark</button>
+            <button class="bookmark-button ${
+              this._data[0].bookmarked ? "recipe-bookmarked" : ""
+            }"  data-id="${this._data[0].id}">${
+      this._data[0].bookmarked
+        ? "already in your bookmarks"
+        : "add to bookmarks"
+    }</button>
           </div>
         </div>
       </section>
@@ -70,12 +76,17 @@ class RecipePageView extends view {
         <ul class="similar-products_list">
         ${this._data[1].results
           .map((prod) => {
+            console.log(`prod bookmark value is: ${prod.bookmarked}`);
             return `
           <li class="suggested-product">
-            <div style="background-image:url(${prod.image_url});" class="suggested-img">
+            <div style="background-image:url(${
+              prod.image_url
+            });" class="suggested-img ${
+              prod.bookmarked == true ? "bookmarked" : ""
+            }" data-id=${prod.id}>
               <div class="bookmark-btn">
                <svg class="bookmark-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20.62"><polygon points="14 0 0 0 0 20.62 7 17.12 14 20.62 14 0" style="fill:#fff"/></svg></div>
-              <button class="prod-link" data-id=${prod.id}>visit</button>
+              <button class="prod-link" >visit</button>
             </div>
             <h1>${prod.title}</h1>
           </li>
@@ -89,6 +100,24 @@ class RecipePageView extends view {
       </section>
     
         `;
+  }
+
+  _recipeBookmarkHandler(handler) {
+    this._parent.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("bookmark-button")) return;
+      const trigger = e.target;
+      if (trigger.classList.contains("recipe-bookmarked")) {
+        console.log("contains");
+        console.log(trigger.dataset.id);
+        trigger.classList.remove("recipe-bookmarked");
+        trigger.textContent = "add to bookmarks";
+        handler(trigger.dataset.id, false);
+      } else {
+        trigger.classList.add("recipe-bookmarked");
+        trigger.textContent = "already in your bookmarks";
+        handler(trigger.dataset.id, true);
+      }
+    });
   }
 
   _servingAdjuster() {
@@ -119,8 +148,11 @@ class RecipePageView extends view {
     this._parent.addEventListener("click", (e) => {
       console.log(e.target);
       if (!e.target.classList.contains("prod-link")) return;
-      const id = e.target.dataset.id;
-      handler(id);
+      const id = e.target.closest(".suggested-img").dataset.id;
+      const isBookmarked = e.target
+        .closest(".suggested-img")
+        .classList.contains("bookmarked");
+      handler(id, isBookmarked);
     });
   }
 

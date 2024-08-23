@@ -616,6 +616,10 @@ svg {
   line-height: 5rem;
 }
 
+.recipe-bookmarked {
+  background-color: black;
+}
+
 .similar-products {
   border: 2px solid purple;
   height: 100%;

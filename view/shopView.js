@@ -37,12 +37,16 @@ class ShopView extends View {
           ${this._data.results
             .map((product) => {
               return `
-            <li class="suggested-product">
-              <div style="background-image:url(${product.image_url});" class="suggested-img">
-                <div class="bookmark-btn" data-id=${product.id}>
+            <li class="suggested-product" >
+              <div style="background-image:url(${
+                product.image_url
+              });" class="suggested-img ${
+                product.bookmarked == true ? "bookmarked" : ""
+              }" data-id=${product.id}>
+                <div class="bookmark-btn" >
                <svg class="bookmark-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20.62"><polygon points="14 0 0 0 0 20.62 7 17.12 14 20.62 14 0" style="fill:#fff"/></svg>
                 </div>
-                <a href="#" data-id=${product.id} class="prod-link">visit</a>
+                <button type="buttob" class="prod-link">visit</button>
               </div>
               <h1>${product.title}</h1>
             </li>
@@ -60,9 +64,6 @@ class ShopView extends View {
               ${new Array(this._data.totalPages)
                 .fill("")
                 .map((_, index, array) => {
-                  console.log(`index: ${index + 1}`);
-                  console.log(`data index: ${this._data.currentPage}`);
-                  console.log(this._data.currentPage == index + 1);
                   return `
                 <li class="page-btn ${
                   this._data.currentPage == index + 1 ? "page-selected" : ""
@@ -89,11 +90,11 @@ class ShopView extends View {
       const parent = trigger.closest(".suggested-img");
       if (parent.classList.contains("bookmarked")) {
         parent.classList.remove("bookmarked");
+        handler(parent.dataset.id, false);
       } else {
         parent.classList.add("bookmarked");
-        handler(trigger.dataset.id);
+        handler(parent.dataset.id, true);
       }
-      console.log(`the id is: ${trigger.dataset.id}`);
     });
   }
 
