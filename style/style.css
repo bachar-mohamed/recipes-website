@@ -654,19 +654,17 @@ svg {
 
 .similar-products_list {
   width: 80%;
-  display: flex;
-  justify-content: space-around;
   border-radius: 1rem;
-  background-color: #d4b36127;
   border: 1px solid grey;
-  gap: 7rem;
-  padding: 2rem;
+  display: flex;
+  justify-content: flex-start;
   overflow: hidden;
 }
 
 .similar-products_list li {
   transition-property: transform;
   transition-duration: 0.5s;
+  margin: 1.5rem 3rem;
 }
 
 .show-all {

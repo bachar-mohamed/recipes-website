@@ -72,7 +72,7 @@ class RecipePageView extends view {
       <section class="similar-products">
         <h1>you may also like</h1>
         <div class="similar-products_container">
-        <button class="left-arrow" type="button">&larr;</button>
+        <button class="swipe-arrow left-arrow" type="button">&larr;</button>
         <ul class="similar-products_list">
         ${this._data[1].results
           .map((prod) => {
@@ -94,7 +94,7 @@ class RecipePageView extends view {
           })
           .join("")}
         </ul>
-       <button class="right-arrow" type="button">&rarr;</button>
+       <button class="swipe-arrow right-arrow" type="button">&rarr;</button>
         </div>
         <button class="show-all">show all</button>
       </section>
@@ -146,7 +146,6 @@ class RecipePageView extends view {
 
   _productClickHandler(handler) {
     this._parent.addEventListener("click", (e) => {
-      console.log(e.target);
       if (!e.target.classList.contains("prod-link")) return;
       const id = e.target.closest(".suggested-img").dataset.id;
       const isBookmarked = e.target
@@ -177,20 +176,40 @@ class RecipePageView extends view {
   }
 
   _slideToLeft() {
-    const rightArrow = this._parent.querySelector(".right-arrow");
-    const container = this._parent.querySelector(".similar-products_list");
-    const gap =
-      Number.parseInt(getComputedStyle(container).rowGap) * this._counter;
-    const padding = 20 * this._counter;
-    rightArrow.addEventListener("click", (e) => {
-      this._parent.querySelectorAll(".suggested-product").forEach((product) => {
-        const translationAmount =
-          Number.parseInt(getComputedStyle(product).width) * this._counter;
-        product.style.transform = `translateX(-${
-          translationAmount + gap + padding
-        }px)`;
-      });
-      this._counter++;
+    this._parent.addEventListener("click", (e) => {
+      const trigger = e.target;
+      console.log("trigger is");
+      if (!e.target.classList.contains("swipe-arrow")) return;
+      console.log(trigger);
+      this._parent
+        .querySelectorAll(".suggested-product")
+        .forEach((product, _, array) => {
+          const gap = Number.parseInt(getComputedStyle(product).marginLeft);
+          const translationAmount =
+            Number.parseInt(getComputedStyle(product).width) + gap * 2;
+          if (trigger.classList.contains("right-arrow")) {
+            if (this._counter < array.length - 2) {
+              product.style.transform = `translateX(-${
+                translationAmount * this._counter
+              }px)`;
+            } else {
+              product.style.transform = "translateX(0px)";
+              this._counter = 0;
+            }
+          } /*else {
+            if (this._counter > 0) {
+              product.style.transform = `translateX(${
+                translationAmount * this._counter
+              }px)`;
+            } else {
+              product.style.transform = "translateX(0px)";
+              this._counter = array.length - 1;
+            }
+          }*/
+        });
+      trigger.classList.contains("right-arrow")
+        ? this._counter++
+        : this._counter--;
     });
   }
 
