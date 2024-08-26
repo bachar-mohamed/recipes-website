@@ -6,7 +6,7 @@ class RecipePageView extends view {
   _bookmarkBtn;
   _prodImage;
   _link;
-  _counter = 1;
+  _counter = 0;
 
   _generateMarkup() {
     return `
@@ -178,9 +178,9 @@ class RecipePageView extends view {
   _slideToLeft() {
     this._parent.addEventListener("click", (e) => {
       const trigger = e.target;
-      console.log("trigger is");
+      let modified = false;
       if (!e.target.classList.contains("swipe-arrow")) return;
-      console.log(trigger);
+      console.log(`counter is ${this._counter}`);
       this._parent
         .querySelectorAll(".suggested-product")
         .forEach((product, _, array) => {
@@ -188,6 +188,10 @@ class RecipePageView extends view {
           const translationAmount =
             Number.parseInt(getComputedStyle(product).width) + gap * 2;
           if (trigger.classList.contains("right-arrow")) {
+            if (!modified) {
+              this._counter++;
+              modified = true;
+            }
             if (this._counter < array.length - 2) {
               product.style.transform = `translateX(-${
                 translationAmount * this._counter
@@ -196,20 +200,23 @@ class RecipePageView extends view {
               product.style.transform = "translateX(0px)";
               this._counter = 0;
             }
-          } /*else {
-            if (this._counter > 0) {
-              product.style.transform = `translateX(${
+          } else {
+            if (!modified) {
+              this._counter--;
+              modified = true;
+            }
+            if (this._counter >= 0) {
+              product.style.transform = `translateX(-${
                 translationAmount * this._counter
               }px)`;
             } else {
-              product.style.transform = "translateX(0px)";
-              this._counter = array.length - 1;
+              this._counter = array.length - 3;
+              product.style.transform = `translateX(-${
+                translationAmount * this._counter
+              }px)`;
             }
-          }*/
+          }
         });
-      trigger.classList.contains("right-arrow")
-        ? this._counter++
-        : this._counter--;
     });
   }
 

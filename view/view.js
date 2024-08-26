@@ -2,7 +2,7 @@
 
 export default class View {
   _data;
-  _navigationButtons = document.querySelector(".navigation-list");
+  _navigationButtons = document.querySelector("header");
 
   renderSpinner = function () {
     const spinner = `<div class="spinner">
@@ -83,9 +83,16 @@ export default class View {
     });
   }
 
-  _navigationButtonsClickHandler(handler) {
+  _shopButtonsClickHandler(handler) {
     this._navigationButtons.addEventListener("click", (e) => {
       if (!e.target.classList.contains("shop")) return;
+      handler();
+    });
+  }
+
+  _accountButtonsClickHandler(handler) {
+    this._navigationButtons.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("account")) return;
       handler();
     });
   }

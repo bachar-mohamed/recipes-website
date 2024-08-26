@@ -2,6 +2,7 @@ import * as model from "./model.js";
 import landingView from "../view/landingPageView.js";
 import recipeView from "../view/recipePageView.js";
 import shopView from "../view/shopView.js";
+import authenticationView from "../view/authenticationPageView.js";
 
 const featuredProdLoader = async function (keyword) {
   await model.getPartialRecipes(keyword, undefined, 6);
@@ -16,6 +17,10 @@ const addIdToBookMarks = function (id, addEntry) {
   model.handleBookMarks(id, addEntry);
 };
 
+const loadAuthenticationPage = function () {
+  authenticationView.render("hello");
+};
+
 const loadProductPage = async function (id, bookmarked) {
   await model.getRecipe(id, bookmarked);
   await model.getPartialRecipes(
@@ -25,7 +30,6 @@ const loadProductPage = async function (id, bookmarked) {
   );
   recipeView.render([model.state.recipe, model.state.fetchedRecipes]);
   recipeView._scrollViewUp();
-  recipeView._slideToLeft();
 };
 
 const loadShopView = async function (keyword) {
@@ -50,14 +54,16 @@ const init = function () {
   featuredProdLoader();
   landingView._productClickHandler(loadProductPage);
   landingView._featuredProdClickHandler(featuredProdLoader);
-  landingView._navigationButtonsClickHandler(loadShopView);
+  landingView._shopButtonsClickHandler(loadShopView);
   landingView._loadMoreButtonHandler(loadShopView);
+  landingView._accountButtonsClickHandler(loadAuthenticationPage);
   recipeView._showButtons();
   recipeView._hideButtons();
   recipeView._productClickHandler(loadProductPage);
   recipeView._servingAdjuster();
   recipeView._loadMoreButtonHandler(loadShopView);
   recipeView._recipeBookmarkHandler(addIdToBookMarks);
+  recipeView._slideToLeft();
   shopView._optionClickHandler(loadShopView);
   shopView._searchProductHandler(loadShopView);
   shopView._pageButtonClickHandler(loadNextPage);
