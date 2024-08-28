@@ -83,17 +83,18 @@ export default class View {
     });
   }
 
-  _shopButtonsClickHandler(handler) {
+  /*_shopButtonsClickHandler(handler) {
     this._navigationButtons.addEventListener("click", (e) => {
       if (!e.target.classList.contains("shop")) return;
       handler();
     });
-  }
+  }*/
 
-  _accountButtonsClickHandler(handler) {
+  _navigationButtonsClickHandler(handler) {
     this._navigationButtons.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("account")) return;
-      handler();
+      if (!e.target.closest(".nav") && !e.target.classList.contains("nav"))
+        return;
+      handler(e.target.dataset.dest);
     });
   }
 }

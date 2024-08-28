@@ -4,13 +4,29 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: "MilkyVintage";
+  src: url("../resources/MilkyVintage-Regular.ttf");
+}
+
+@font-face {
+  font-family: "bethany";
+  src: url("../resources/Bethany\ Elingston.otf");
+}
+
+@font-face {
+  font-family: "Sparky";
+  src: url("../resources/Sparky\ Stones.ttf");
+}
+
 html {
   font-size: 62.5%;
   font-family: "Lexend", sans-serif;
+  color: rgb(102, 77, 54);
 }
 
 body {
-  background-color: #f4f4f3;
+  background-color: #fff3dd;
 }
 
 li {
@@ -19,7 +35,7 @@ li {
 
 a {
   text-decoration: none;
-  color: black;
+  color: #664d36;
 }
 
 section {
@@ -37,24 +53,35 @@ header {
   width: 100%;
   height: 9rem;
   padding: 0rem 4rem 0rem 4rem;
+  background-color: #ffd748;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  place-items: center;
+  justify-content: center;
+}
+.logo-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-self: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-header a {
-  color: white;
+.logo-svg {
+  width: 3rem;
+  height: 3rem;
+  transform: translateY(-0.4rem);
 }
 
 .logo {
-  font-size: 2.8rem;
+  font-size: 4rem;
+  font-family: "Sparky";
 }
 
 .navigation-list {
   width: 60rem;
   height: 50%;
-  background-color: grey;
   border-radius: 1rem;
   display: flex;
   flex-direction: row;
@@ -91,13 +118,14 @@ header a {
 }
 
 .account {
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 300;
   text-transform: capitalize;
-  border: 1px solid white;
-  padding: 1em 2em;
+  justify-self: flex-end;
+  color: white;
+  padding: 0.8em 1.5em;
   background-color: black;
-  border-radius: 2em;
+  border-radius: 0.3em;
 }
 
 main {
@@ -125,38 +153,38 @@ main {
   gap: 2rem;
 }
 
-.homepage-image > h3 {
-  color: white;
-  text-align: center;
-  text-transform: capitalize;
-  font-size: 1.8rem;
-}
-
 .homepage-image > h1 {
+  font-family: "MilkyVintage";
+  text-transform: capitalize;
   color: #bf9410;
-  font-size: 7.7rem;
+  font-size: 10rem;
+  font-weight: 300;
 }
 
 .homepage-image > button {
   border: 2px solid white;
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   text-transform: uppercase;
-  border-radius: 4em;
-  background-color: #bf9410;
+  border-radius: 0.2em;
+  font-weight: 400;
+  background-color: #664d36;
   margin-top: 3rem;
-  padding: 1em 6em;
+  padding: 1em 3em;
 }
 
 .store-profile {
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
   width: 100%;
 }
 
 .store-highlights {
   width: 100%;
-  height: 100rem;
-  background: linear-gradient(to bottom, black, #d4b461, #f4f4f3);
+  height: 50rem;
+  background-color: #664d36;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-items: center;
@@ -168,6 +196,7 @@ main {
   width: 26cqw;
   height: 40cqh;
   display: flex;
+  background-color: #fff3dd;
   flex-direction: column;
   justify-content: flex-start;
   padding: 1rem;
@@ -178,6 +207,8 @@ main {
 
 .store-highlights > li > h1 {
   font-size: 2rem;
+  text-transform: capitalize;
+  font-weight: 500;
   margin-bottom: 2rem;
 }
 
@@ -202,24 +233,31 @@ main {
 }
 
 .qualities-area_text {
+  border-radius: 1rem;
+
   width: 100%;
   height: 100%;
   display: flex;
   padding: 0rem 3rem;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 4rem;
+  gap: 8rem;
   align-items: flex-start;
 }
 
 .qualities-header > h1 {
   font-size: 5rem;
-  font-weight: 500;
-  color: #bf9410;
+  font-family: "bethany";
+  font-weight: 600;
+  color: #f06b32;
+  letter-spacing: 0.3rem;
+  text-transform: capitalize;
+  margin-bottom: 0;
 }
 
 .qualities-header > p {
   font-size: 1.6rem;
+  display: none;
 }
 
 .content-area_container {
@@ -235,6 +273,11 @@ main {
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid grey;
+}
+
+.title-area > h1 {
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
 .extend-btn {
@@ -270,11 +313,13 @@ main {
 
 .p-container > p {
   font-size: 1.4rem;
+  color: rgb(105, 85, 46);
 }
 
 .img-container {
   width: 100%;
   height: 65rem;
+  border-radius: 2rem;
   box-shadow: 0px 0px 10px -1px black;
 }
 
@@ -282,10 +327,14 @@ main {
   width: 100%;
   height: 100%;
   background-position: center;
+  background-image: url("../resources/tall_image.jpg");
+  background-position: center;
+  background-size: cover;
+  border-radius: 1rem;
 }
 
 .featured-products {
-  width: 100%;
+  width: 90%;
   height: 80rem;
   display: flex;
   flex-direction: column;
@@ -302,13 +351,15 @@ main {
   justify-content: center;
   align-items: center;
   margin-bottom: 3rem;
-  gap: 1rem;
+  gap: 0rem;
 }
 
 .featured-products_headings > h1 {
-  color: #bf9410;
+  color: #f06b32;
+  font-family: "bethany";
   font-size: 5rem;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.3rem;
   text-transform: capitalize;
 }
 
@@ -321,7 +372,7 @@ main {
 .products-categories {
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
-  height: 10rem;
+  height: 8rem;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -331,7 +382,7 @@ main {
 }
 
 .products-categories > li {
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-transform: uppercase;
   padding: 1em 2em;
   transition-property: background-color, color, font-weight;
@@ -340,22 +391,21 @@ main {
 }
 
 .featured:hover {
-  background-color: #bf9410;
-  font-weight: 600;
+  background-color: #664d36;
   color: white;
   cursor: pointer;
 }
 
 .featured-clicked {
-  background-color: #bf9410;
-  font-weight: 600;
+  background-color: #664d36;
+  font-weight: 300;
   color: white;
 }
 
 .products-display {
   overflow: hidden;
   width: 100%;
-  height: 50rem;
+  height: 40rem;
   display: grid;
   column-gap: 2rem;
   margin-bottom: 3rem;
@@ -381,8 +431,8 @@ main {
 
 .product > img {
   border-radius: 50%;
-  width: 10rem;
-  height: 10rem;
+  width: 12rem;
+  height: 8rem;
 }
 .product-headings {
   padding: 2rem 0rem;
@@ -391,26 +441,28 @@ main {
 }
 
 .product-name {
-  font-size: 2.2rem;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 400;
   text-transform: capitalize;
 }
 
 .autor {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: #bf9410;
 }
 
 .load-more {
-  color: white;
-  font-size: 1.8rem;
-  text-transform: uppercase;
   border: none;
-  border-radius: 1rem;
-  border: 2px solid black;
-  background-color: #bf9410;
+  color: white;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  border-radius: 0.2em;
+  font-weight: 400;
+  background-color: #664d36;
+  margin-top: 3rem;
   padding: 1em 3em;
+  box-shadow: 0px 0px 5px -1px black;
 }
 
 .store-stats {
@@ -679,13 +731,6 @@ svg {
   line-height: 5rem;
 }
 
-.selected {
-  color: white;
-  background-color: darkgoldenrod;
-  border-radius: 2rem;
-  padding: 0.5rem 2rem;
-}
-
 /*store styling */
 
 .page-poster {
@@ -702,6 +747,7 @@ svg {
 .page-poster > h1 {
   font-size: 6rem;
   color: white;
+  font-family: "bethany";
   height: fit-content;
   position: absolute;
   top: 0;
@@ -712,7 +758,6 @@ svg {
 .products-section {
   width: 100%;
   overflow: hidden;
-  border: 2px solid purple;
   display: flex;
   padding: 3rem 0rem;
   flex-direction: row;
@@ -732,6 +777,7 @@ aside {
 
 aside .title {
   font-size: 3rem;
+  font-weight: 400;
 }
 
 aside > div {
@@ -745,19 +791,20 @@ aside > div {
   width: fit-content;
   display: flex;
   flex-direction: row;
-  padding: 0.2rem;
   justify-content: flex-start;
   background-color: white;
   box-shadow: 0px 0px 2px -1px black;
   border-radius: 0.5rem;
-  gap: 1rem;
+  padding: 0.1rem;
+  height: 4.5rem;
   align-items: center;
 }
 
 .search-container > div > input {
-  width: 20rem;
+  width: 100%;
   border: none;
-  border-radius: 2rem;
+  height: 100%;
+  border-radius: 0rem;
   padding: 1rem;
   font-size: 1.2rem;
 }
@@ -767,13 +814,13 @@ aside > div {
 }
 
 .search-container > div > button {
-  width: 7rem;
+  width: 14rem;
   font-size: 1.4rem;
   text-transform: capitalize;
   font-weight: 400;
-  height: 3.5rem;
+  height: 100%;
   border-radius: 0.5rem;
-  background-color: #bf9410;
+  background-color: #664d36;
   color: white;
   border: none;
 }
@@ -790,9 +837,16 @@ nav {
 
 nav > h1 {
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 400;
   text-transform: capitalize;
   text-decoration: none;
+}
+
+.selected {
+  color: white;
+  background-color: #664d36;
+  border-radius: 0.5rem;
+  padding: 0.5rem 2rem;
 }
 
 .list-count_container {
@@ -840,12 +894,12 @@ nav > h1 {
 }
 
 .suggested-product {
-  background-color: white;
+  background-color: wheat;
   width: 32rem;
   height: 40rem;
   flex-shrink: 0;
   border-radius: 1rem;
-  box-shadow: 0px 0px 3px -1px black;
+  box-shadow: 0px 0px 6px -1px black;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -856,10 +910,9 @@ nav > h1 {
 
 .suggested-img {
   position: relative;
-  box-shadow: 0px 0px 3px -1px black;
   width: 100%;
   height: 30rem;
-  border-radius: 0.5rem;
+  border-radius: 2rem;
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -930,6 +983,8 @@ nav > h1 {
 
 .suggested-img.bookmarked::before {
   background-color: rgb(0, 0, 0, 0.4);
+  border-radius: inherit;
+  border-radius: 2rem;
 }
 
 .suggested-img::before {
@@ -938,16 +993,18 @@ nav > h1 {
   inset: 0;
   background-color: rgb(0, 0, 0, 0);
   transition-property: background-color;
+  border-radius: 2rem;
   transition-duration: 0.5s;
 }
 
 .suggested-img:hover::before {
   background-color: rgb(0, 0, 0, 0.4);
+  border-radius: 2rem;
 }
 
 .suggested-product h1 {
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .page-btn_container {
@@ -982,9 +1039,11 @@ nav > h1 {
   color: white;
 }
 .arrow {
-  width: 1rem;
-  height: 1rem;
   border-radius: 50%;
+  font-size: 1.4rem;
+  background-color: #d4b461;
+  color: white;
+  padding: 1rem;
 }
 
 .hidden {

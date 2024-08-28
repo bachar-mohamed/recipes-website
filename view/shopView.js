@@ -134,11 +134,7 @@ class ShopView extends View {
   }
 
   _highlightCurrent() {
-    console.log("hello");
     this._parent.querySelectorAll(".recipe-name").forEach((element) => {
-      console.log(
-        `${element.dataset.keyword.toLowerCase()} == ${this._data.keyword.toLowerCase()}`
-      );
       if (
         element.dataset.keyword.toLowerCase() ===
         this._data.keyword.toLowerCase()

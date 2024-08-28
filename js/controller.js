@@ -6,10 +6,22 @@ import authenticationView from "../view/authenticationPageView.js";
 
 const featuredProdLoader = async function (keyword) {
   await model.getPartialRecipes(keyword, undefined, 6);
-  console.log("recipes: ");
   console.log(model.state.fetchedRecipes);
   landingView.render(model.state.fetchedRecipes);
   landingView._colapsibleTextHandler();
+};
+
+const navigationHandler = function (destinationPage) {
+  console.log(destinationPage);
+  if (destinationPage === "home") {
+    featuredProdLoader();
+  } else if (destinationPage === "shop") {
+    loadShopView();
+  } else if (destinationPage === "account") {
+    loadAuthenticationPage();
+  } else {
+    //do nothing for now
+  }
 };
 
 const addIdToBookMarks = function (id, addEntry) {
@@ -35,10 +47,6 @@ const loadProductPage = async function (id, bookmarked) {
 const loadShopView = async function (keyword) {
   await model.getPartialRecipes(keyword);
   shopView.render(model.state.fetchedRecipes);
-  console.log("keyword from view");
-  console.log(keyword);
-  console.log("keyword from model");
-  console.log(model.state.fetchedRecipes.keyword);
   shopView._highlightCurrent();
   shopView._scrollViewUp();
 };
@@ -54,9 +62,8 @@ const init = function () {
   featuredProdLoader();
   landingView._productClickHandler(loadProductPage);
   landingView._featuredProdClickHandler(featuredProdLoader);
-  landingView._shopButtonsClickHandler(loadShopView);
   landingView._loadMoreButtonHandler(loadShopView);
-  landingView._accountButtonsClickHandler(loadAuthenticationPage);
+  landingView._navigationButtonsClickHandler(navigationHandler);
   recipeView._showButtons();
   recipeView._hideButtons();
   recipeView._productClickHandler(loadProductPage);

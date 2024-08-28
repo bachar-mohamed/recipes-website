@@ -12,22 +12,36 @@
   </head>
   <body>
     <header>
-      <h1 class="logo">logo</h1>
+      <div class="nav logo-container">
+        <svg
+          class="logo-svg"
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M15,2.86h-.07a5.68,5.68,0,0,0-9.86,0H5a5,5,0,0,0-2.14,9.5v6.93a.71.71,0,0,0,.71.71H16.43a.71.71,0,0,0,.71-.71h0V12.36A5,5,0,0,0,15,2.86ZM4.29,18.57V17.14H15.71v1.43Zm11.9-7.36a.71.71,0,0,0-.48.67v3.83h-2l.58-3.45a.71.71,0,0,0-.59-.82.7.7,0,0,0-.82.58h0l-.62,3.68H10.71V12.14a.71.71,0,0,0-1.42,0v3.57H7.75L7.13,12a.71.71,0,1,0-1.41.23l.58,3.45h-2V11.88a.71.71,0,0,0-.48-.67,3.55,3.55,0,0,1,.66-6.87,5.31,5.31,0,0,0-.18,1.37.71.71,0,1,0,1.42,0,4.29,4.29,0,0,1,8.57,0,.72.72,0,1,0,1.43,0,5.31,5.31,0,0,0-.18-1.37,3.55,3.55,0,0,1,.66,6.87Z"
+            transform="translate(0 0)"
+            style="fill: #674e38"
+          />
+        </svg>
+        <h1 class="logo" data-dest="home">Recient</h1>
+      </div>
       <ul class="navigation-list">
-        <li>
-          <a class="has-border home" href="#">Home</a>
+        <li class="nav">
+          <a class="has-border home" data-dest="home" href="#">Home</a>
         </li>
-        <li>
-          <a class="has-border shop" href="#">Shop</a>
+        <li class="nav">
+          <a class="has-border shop" data-dest="shop" href="#">Shop</a>
         </li>
-        <li>
+        <li class="nav">
           <a class="has-border about" href="#">About</a>
         </li>
-        <li>
+        <li class="nav">
           <a href="#">Contact</a>
         </li>
       </ul>
-      <a class="account" href="#">account</a>
+      <a class="account nav" data-dest="account" href="#">account</a>
     </header>
     <main></main>
   </body>

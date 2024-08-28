@@ -7,10 +7,7 @@ class LandingPageView extends view {
   _generateMarkup() {
     return `
             <section class="homepage-image">
-        <h3>
-          one place <br />
-          for all ingredients you need
-        </h3>
+
         <h1>explore with freedom</h1>
         <button class="explore">explore</button>
       </section>
@@ -138,10 +135,7 @@ class LandingPageView extends view {
             <div class="qualities-header">
               <h1>our benefits</h1>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A
-                obcaecati ex amet deserunt autem odio dolore ab ipsa enim?
-                Doloribus nam quaerat officiis eveniet sed. Expedita beatae
-                possimus molestiae natus?
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
               </p>
             </div>
             <div class="content-area_container">
@@ -220,7 +214,7 @@ class LandingPageView extends view {
               </div>
             </div>
           <div class="img-container">
-            <img src="/tall_image.3be62d00.jpg" class="qualities-area_image" >
+            <div class="qualities-area_image" ></div>
           </div>
         </div>
         <div class="featured-products">
