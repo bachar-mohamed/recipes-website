@@ -135,9 +135,6 @@ class LandingPageView extends view {
           <div class="qualities-area_text">
             <div class="qualities-header">
               <h1>our benefits</h1>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
             </div>
             <div class="content-area_container">
               <div class="content-area active">
@@ -242,7 +239,7 @@ class LandingPageView extends view {
             .map((recipe) => {
               return `
             <li class="product" data-id=${recipe.id}>
-              <img src=${recipe.image_url} alt="" />
+              <div class="img" style="background-image:url(${recipe.image_url})" ></div>
               <div class="product-headings">
                 <h1 class="product-name">${recipe.title}</h1>
                 <h3 class="autor">${recipe.publisher}</h3>
