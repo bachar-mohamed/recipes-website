@@ -137,7 +137,7 @@ main {
 /*landing page styling*/
 
 .homepage-image {
-  height: 100vh;
+  height: calc(100vh - 9rem);
   background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0),
@@ -161,7 +161,7 @@ main {
   font-weight: 300;
 }
 
-.homepage-image > button {
+.explore {
   border: 2px solid white;
   color: white;
   font-size: 1.6rem;
@@ -334,7 +334,7 @@ main {
 }
 
 .featured-products {
-  width: 90%;
+  width: 100%;
   height: 80rem;
   display: flex;
   flex-direction: column;
@@ -503,6 +503,14 @@ main {
 
 /*recipe ingredients page styling */
 
+.prod-details_section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .prod-details_container {
   width: 100%;
   height: 100%;
@@ -513,7 +521,6 @@ main {
 }
 
 .product-img_container {
-  background-color: #f5f0e1;
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;
@@ -546,8 +553,8 @@ main {
   color: white;
   text-transform: capitalize;
   font-weight: 400;
-  background-color: #d4b461;
-  border-radius: 0.5em;
+  background-color: #664d36;
+  border-radius: 0.2em;
 }
 
 .title {
@@ -557,17 +564,14 @@ main {
 }
 
 .container {
-  width: 30rem;
   height: 5rem;
   border-radius: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  border: 2px solid #d4b461;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  border: 1px solid #d4b461;
 }
 
-svg {
+.container svg {
   width: 4rem;
   height: 4rem;
 }
@@ -575,6 +579,7 @@ svg {
 .container > div {
   display: flex;
   height: 100%;
+  width: 100%;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -589,7 +594,7 @@ svg {
 .container span {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #bf9410;
+  color: #f06b32;
 }
 
 .servings-controller {
@@ -604,7 +609,8 @@ svg {
 .servings-controller > button {
   border-radius: 50%;
   border-color: transparent;
-  background-color: #d4b461;
+  background-color: #bf9410;
+  color: white;
   width: 1.8rem;
   height: 1.8rem;
 }
@@ -644,13 +650,13 @@ svg {
 .ingredients-container > ul > li > span {
   font-size: 1.4rem;
   font-weight: 500;
-  color: #bf9410;
+  color: #f06b32;
 }
 
 .buttons-container {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -659,9 +665,9 @@ svg {
 .buttons-container * {
   font-size: 1.4rem;
   border: none;
-  background-color: #bf9410;
+  background-color: #664d36;
   color: white;
-  border-radius: 1em;
+  border-radius: 0.5em;
   text-align: center;
   width: 30rem;
   height: 5rem;
@@ -673,9 +679,9 @@ svg {
 }
 
 .similar-products {
-  border: 2px solid purple;
   height: 100%;
   padding: 2rem;
+  background-color: #f06b32;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -683,9 +689,16 @@ svg {
   gap: 5rem;
 }
 
+.svg-div {
+  width: 100vw;
+  margin-bottom: -0.3rem;
+}
+
 .similar-products > h1 {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 3rem;
+  font-weight: 500;
+  color: white;
+  font-family: "bethany";
   text-transform: capitalize;
 }
 
@@ -707,7 +720,6 @@ svg {
 .similar-products_list {
   width: 80%;
   border-radius: 1rem;
-  border: 1px solid grey;
   display: flex;
   justify-content: flex-start;
   overflow: hidden;
@@ -720,11 +732,12 @@ svg {
 }
 
 .show-all {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
+  font-weight: 500;
   border: none;
-  background-color: #bf9410;
+  background-color: #664d36;
   color: white;
-  border-radius: 1em;
+  border-radius: 0.5em;
   text-align: center;
   width: 30rem;
   height: 5rem;
@@ -898,7 +911,7 @@ nav > h1 {
   width: 32rem;
   height: 40rem;
   flex-shrink: 0;
-  border-radius: 1rem;
+  border-radius: 2rem;
   box-shadow: 0px 0px 6px -1px black;
   overflow: hidden;
   display: flex;
@@ -1031,19 +1044,18 @@ nav > h1 {
   font-size: 1.4rem;
   font-weight: 400;
   border: 1px solid #bf9410;
-  padding: 1.5em;
-  border-radius: 1rem;
+  padding: 1em;
+  border-radius: 0.6rem;
 }
 .page-selected {
-  background-color: #bf9410;
+  background-color: #664d36;
   color: white;
 }
 .arrow {
-  border-radius: 50%;
   font-size: 1.4rem;
-  background-color: #d4b461;
-  color: white;
-  padding: 1rem;
+  font-weight: 600;
+  color: black;
+  padding: 0.6em;
 }
 
 .hidden {

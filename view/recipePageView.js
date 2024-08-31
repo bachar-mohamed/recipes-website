@@ -10,7 +10,8 @@ class RecipePageView extends view {
 
   _generateMarkup() {
     return `
-         <section class="prod-details_container">
+         <section class="product-details_section">
+         <div class="prod-details_container">
          <div class="product-img_container">
         <img src="${this._data[0].image_url}" class="prod-img"/>
         </div>
@@ -33,8 +34,8 @@ class RecipePageView extends view {
                 this._data[0].servings
               }</span> servings</p>
               <div class="servings-controller">
-              <button class="adjuster increase-servings" type="button">&plus;</button>
               <button class="adjuster decrease-servings" type="button">&minus;</button>
+              <button class="adjuster increase-servings" type="button">&plus;</button>
               </div>
             </div>
           </div>
@@ -67,8 +68,13 @@ class RecipePageView extends view {
     }</button>
           </div>
         </div>
+         </div>
+         <div class="svg-div">
+    <svg viewBox="0 0 3360 274" fill="#f06b32">
+  <path d="M3001.06 159.245c30.49-24.558 60.98-49.117 120.98-49.117 66.87 0 95.35 33.924 128.52 73.422 26.34 31.368 55.63 66.25 109.44 90.45H0c53.81-24.199 83.103-59.081 109.444-90.448 33.169-39.499 61.658-73.424 128.526-73.424 60.004 0 90.494 24.559 120.983 49.117 30.49 24.558 60.979 49.116 120.984 49.116 60.004 0 92.824-42.756 125.643-85.513 32.82-42.756 65.64-85.513 125.644-85.513 60.004 0 92.536 42.757 125.069 85.513 32.532 42.757 65.064 85.513 125.068 85.513 62.959 0 93.159-23.274 121.869-45.402 26.02-20.049 50.81-39.157 97.65-39.157 48.93 0 74.21 30.141 99.65 60.484 25.78 30.752 51.74 61.71 102.68 61.71 45.51 0 83.02-54.926 122.59-112.87C1569.97 68.443 1616.71 0 1680.01 0c63.3 0 110.04 68.444 154.21 133.126 39.57 57.944 77.08 112.87 122.59 112.87 50.94 0 76.9-30.958 102.68-61.71 25.45-30.343 50.72-60.484 99.65-60.484 46.84 0 71.63 19.108 97.65 39.158 28.71 22.127 58.91 45.401 121.87 45.401 60 0 92.53-42.756 125.06-85.513 32.53-42.756 65.06-85.513 125.07-85.513 60 0 92.82 42.757 125.64 85.513 32.82 42.757 65.64 85.513 125.64 85.513 60.01 0 90.5-24.558 120.99-49.116Z"></path>
+</svg>
+  </div>
       </section>
-
       <section class="similar-products">
         <h1>you may also like</h1>
         <div class="similar-products_container">
@@ -124,20 +130,27 @@ class RecipePageView extends view {
     this._parent.addEventListener("click", (e) => {
       if (!e.target.classList.contains("adjuster")) return;
       const trigger = e.target;
+      const servings = this._parent.querySelector(".total-servings");
       const portions = this._parent.querySelectorAll(".quantity");
       if (trigger.classList.contains("increase-servings")) {
+        servings.textContent = Number(servings.textContent) * 2;
         portions.forEach((portion) => {
-          console.log(portion.textContent);
           portion.textContent =
             portion.textContent > 0
               ? portion.textContent * 2
               : portion.textContent;
         });
-      } else if (trigger.classList.contains("decrease-servings")) {
+      } else if (
+        trigger.classList.contains("decrease-servings") &&
+        Number(servings.textContent) > 4
+      ) {
+        servings.textContent = Number(servings.textContent) / 2;
         portions.forEach((portion) => {
           portion.textContent =
             portion.textContent > 0
-              ? (portion.textContent / 2).toFixed(1)
+              ? Number.isInteger(portion.textContent / 2)
+                ? portion.textContent / 2
+                : (portion.textContent / 2).toFixed(2)
               : portion.textContent;
         });
       }

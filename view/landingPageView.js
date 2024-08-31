@@ -9,7 +9,8 @@ class LandingPageView extends view {
             <section class="homepage-image">
 
         <h1>explore with freedom</h1>
-        <button class="explore">explore</button>
+        <button class="explore">explore</button>        
+  </div>
       </section>
 
       <section class="store-profile">
