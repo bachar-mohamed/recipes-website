@@ -255,17 +255,17 @@ class LandingPageView extends view {
         <div class="store-stats">
           <ul>
             <li>
-              <h1>11</h1>
+              <h1>100+</h1>
               <p>
-                ingredient <br />
-                published
+                recipe <br />
+                available
               </p>
             </li>
             <li>
-              <h1>11</h1>
+              <h1>10+</h1>
               <p>
-                ingredient <br />
-                published
+                author <br />
+                worldwide
               </p>
             </li>
             <li>
