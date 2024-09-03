@@ -9,7 +9,7 @@ class ShopView extends View {
         <h1>find what your heart desires</h1>
       </div>
       <section class="products-section">
-        <aside class="filters">
+        <div class="filters">
           <div class="search-container">
             <h1 class="title">Search</h1>
             <div>
@@ -17,7 +17,7 @@ class ShopView extends View {
               <button class="search-prod_button">search</button>
             </div>
           </div>
-          <div>
+          <div class="recipe_categories">
             <h1 class="title">shop by</h1>
             <nav>
               <h1 class="recipe-name" data-keyword="pizza">pizza</h1>
@@ -27,7 +27,7 @@ class ShopView extends View {
               <h1 class="recipe-name" data-keyword="pasta">pasta</h1>
             </nav>
           </div>
-        </aside>
+        </div>
         <div class="list-count_container">
           <div class="list-count">
             <p><span>${this._data.totalProducts}</span> products found</p>
