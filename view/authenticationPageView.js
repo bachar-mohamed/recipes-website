@@ -11,10 +11,9 @@ class AuthenticationPageView extends view {
   _generateMarkup() {
     return `<section class="auth-container">
       <div class="authentication">
-        <h1>recipify</h1>
         <div class="auth-form login hidden-form">
-          <h1>user login</h1>
           <form action="">
+          <h1>login</h1>
             <div class="input-container">
               <label for="userLoginEmail">user email</label>
               <input type="text" name="email" id="userLoginEmail" />
@@ -24,13 +23,13 @@ class AuthenticationPageView extends view {
               <input type="password" name="password" id="userPassword" />
             </div>
             <button type="button" class="signUp-btn">login</button>
-            <p>dont have an account? <span>sign up</span></p>
+            <p class="form-paragraph">dont have an account? <span class="form-switcher">sign up</span></p>
           </form>
         </div>
 
         <div class="auth-form sign-up">
-          <h1>user sign up</h1>
           <form action="">
+          <h1>sign up</h1>
             <div class="input-container">
               <label for="userName">user name</label>
               <input type="text" name="userName" id="userName" />
@@ -52,13 +51,26 @@ class AuthenticationPageView extends view {
               />
             </div>
             <button type="button" class="signUp-btn">sign up</button>
-            <p>already have an account? <span>login</span></p>
+            <p class="form-paragraph">already have an account? <span class="form-switcher">login</span></p>
           </form>
         </div>
       </div>
       <div class="backgorund"></div>
     </section>
 `;
+  }
+
+  switchForm() {
+    const forms = this._parent.querySelectorAll(".auth-form");
+    console.log(this._parent);
+    console.log(forms);
+    this._parent.querySelectorAll(".form-switcher").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        forms.forEach((form) => {
+          form.classList.toggle("hidden-form");
+        });
+      });
+    });
   }
 }
 

@@ -31,6 +31,7 @@ const addIdToBookMarks = function (id, addEntry) {
 
 const loadAuthenticationPage = function () {
   authenticationView.render("hello");
+  authenticationView.switchForm();
 };
 
 const loadProductPage = async function (id, bookmarked) {

@@ -815,9 +815,34 @@ main {
   }
 }
 
+@media screen and (max-width: 470px) {
+  header {
+    padding: 0rem 1rem 0rem 1rem;
+  }
+
+  .logo-svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    transform: translateY(-0.2rem);
+  }
+
+  .logo {
+    font-size: 2.5rem;
+    font-family: "Sparky";
+  }
+
+  .homepage-image > h1 {
+    /*font-size: 12vw;*/
+    font-size: 7rem;
+    font-weight: 300;
+    text-align: center;
+  }
+}
+
 /*recipe ingredients page styling */
 
 .prod-details_section {
+  padding: 2rem;
   width: 100%;
   height: 100%;
   display: flex;
@@ -829,9 +854,10 @@ main {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
   justify-items: center;
   place-items: center;
+  padding: 1rem 0rem;
 }
 
 .product-img_container {
@@ -845,8 +871,7 @@ main {
 }
 
 .prod-img {
-  width: 60rem;
-  height: 40rem;
+  max-width: 100%;
   box-shadow: 0px 0px 10px -1px black;
 }
 
@@ -953,8 +978,15 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  flex-wrap: wrap;
+  overflow-y: scroll;
   gap: 1rem;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.ingredients-container > ul ::-webkit-scrollbar {
+  background: transparent;
+  width: 0px;
 }
 
 .ingredients-container > ul > li {
@@ -1004,7 +1036,7 @@ main {
 }
 
 .svg-div {
-  width: 100vw;
+  width: 100%;
   margin-bottom: -0.3rem;
 }
 
@@ -1056,6 +1088,46 @@ main {
   width: 30rem;
   height: 5rem;
   line-height: 5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .buttons-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .buttons-container * {
+    font-size: 1.4rem;
+    width: 15rem;
+    height: 4rem;
+    line-height: 4rem;
+  }
+
+  .similar-products_container button:not(.prod-link) {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    border-color: transparent;
+  }
+
+  .similar-products_list {
+    width: 80%;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .show-all {
+    font-size: 1.5rem;
+    width: 20rem;
+    height: 4rem;
+    line-height: 4rem;
+  }
 }
 
 /*store styling */
@@ -1386,7 +1458,7 @@ nav > h1 {
 
   .filters {
     width: 100%;
-    background-color: #f06b324d;
+    background-color: #f06b3215;
     border-radius: 0.5rem;
     flex-direction: row;
     padding: 0px 3rem;
@@ -1492,6 +1564,12 @@ nav > h1 {
 }
 
 @media screen and (max-width: 768px) {
+  .page-poster > h1 {
+    font-size: 4rem;
+    color: white;
+    text-transform: capitalize;
+  }
+
   .products-section {
     flex-direction: column;
     align-items: center;
@@ -1502,6 +1580,68 @@ nav > h1 {
   .products-ul {
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     gap: 3rem;
+  }
+
+  .filters {
+    width: 100%;
+    background-color: #f06b3215;
+    border-radius: 0.5rem;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .filters .title {
+    font-size: 2rem;
+    width: 10rem;
+  }
+
+  .filters > div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .recipe_categories {
+    order: 1;
+  }
+
+  .search-container {
+    order: 0;
+  }
+
+  nav {
+    flex-direction: row;
+    height: 3.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .list-count_container {
+    padding: 0rem;
+    gap: 2rem;
+  }
+
+  .list-count {
+    padding: 2rem 0rem;
+    justify-content: space-between;
+  }
+
+  .list-count > hr {
+    width: 70vw;
+  }
+
+  .list-count > p {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  .list-count span {
+    font-size: 1.4rem;
   }
 
   .suggested-product {
@@ -1577,67 +1717,75 @@ nav > h1 {
     font-size: 1.4rem;
     font-weight: 400;
   }
+}
 
-  .filters {
+@media screen and (max-width: 600px) {
+  .products-ul {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 3rem;
+  }
+  .page-poster {
+    position: relative;
     width: 100%;
-    background-color: #f06b3215;
-    border-radius: 0.5rem;
-    flex-direction: column;
+    height: 20rem;
+    background-image: url("/resources/background.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     padding: 1rem;
+  }
+
+  .page-poster > h1 {
+    font-size: 3rem;
+    color: white;
+    text-transform: capitalize;
+  }
+
+  .suggested-product {
+    width: 100%;
+    height: 25rem;
+    max-width: 22rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 6px -1px black;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1.8rem;
   }
 
-  .filters .title {
-    font-size: 2rem;
-    width: 10rem;
+  .suggested-img {
+    width: 100%;
+    height: 16rem;
+    border-radius: 0.5rem;
   }
 
-  .filters > div {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  .bookmark-btn {
+    width: 2rem;
+    height: 3.8rem;
+    padding: 0.4rem;
+    top: 0%;
+    right: 8%;
+    border-radius: 0.2rem;
   }
 
-  .recipe_categories {
-    order: 1;
+  .prod-link {
+    padding: 0.3em 2em;
+    border-radius: 0.2em;
+    left: 0;
+    right: 0;
+    bottom: 0%;
+    margin: auto;
+    color: white;
+    font-size: 1.6rem;
+    transition-property: bottom, opacity;
+    transition-duration: 0.5s;
   }
 
-  .search-container {
-    order: 0;
-  }
-
-  nav {
-    flex-direction: row;
-    height: 3.5rem;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .list-count_container {
-    padding: 0rem;
-    gap: 2rem;
-  }
-
-  .list-count {
-    padding: 2rem 0rem;
-    justify-content: space-between;
-  }
-
-  .list-count > hr {
-    width: 70vw;
-  }
-
-  .list-count > p {
-    font-size: 1.2rem;
+  .suggested-product h1 {
+    font-size: 1.3rem;
     font-weight: 400;
-  }
-
-  .list-count span {
-    font-size: 1.4rem;
   }
 }
 
@@ -1645,21 +1793,25 @@ nav > h1 {
 
 .auth-container {
   display: grid;
-  height: 100vh;
+  height: calc(100vh - 9rem);
   grid-template-columns: repeat(2, 1fr);
 }
 
 .authentication {
   border: 1px solid black;
+  background-color: #e4c67c;
   width: 100%;
   height: 100%;
   padding: 2rem;
-  display: grid;
-  grid-template-rows: 1fr 3fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.authentication > h1 {
-  font-size: 4rem;
+.authentication h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
   text-transform: capitalize;
 }
 
@@ -1707,14 +1859,30 @@ label {
 }
 
 .signUp-btn {
-  font-size: 1.2rem;
-  padding: 1em 3em;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-color: transparent;
+  color: white;
+  padding: 0.8em 3em;
   text-transform: capitalize;
-  margin-top: 2rem;
+  background-color: black;
+  margin-top: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.form-paragraph {
+  font-size: 1.3rem;
+}
+
+.form-switcher {
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .backgorund {
-  background-image: url("../resources/login_background.jpeg");
+  background-image: linear-gradient(to left, transparent, black),
+    url("../resources/login_background.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
