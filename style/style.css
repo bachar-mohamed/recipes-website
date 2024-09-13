@@ -510,6 +510,7 @@ main {
   color: white;
   font-size: 1.8rem;
 }
+
 /*responsive landing page and header*/
 
 @media screen and (max-width: 1024px) {
@@ -656,6 +657,15 @@ main {
   .navigation-list,
   .account {
     display: none;
+  }
+
+  .nav_button.nav_button {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    grid-column: 3;
+    justify-self: flex-end;
+    background-color: #664d36;
   }
 
   .homepage-image > h1 {
@@ -900,6 +910,10 @@ main {
   font-size: 3rem;
   font-weight: 400;
   text-transform: capitalize;
+}
+
+.nav_button {
+  display: none;
 }
 
 .container {
@@ -1411,6 +1425,7 @@ nav > h1 {
   flex-direction: row;
   align-self: center;
   justify-content: center;
+  margin-top: 3rem;
   gap: 8px;
   align-items: center;
 }
@@ -1629,15 +1644,18 @@ nav > h1 {
   .list-count {
     padding: 2rem 0rem;
     justify-content: space-between;
+    align-items: center;
+    gap: 0rem;
   }
 
   .list-count > hr {
-    width: 70vw;
+    width: 75vw;
   }
 
   .list-count > p {
     font-size: 1.2rem;
     font-weight: 400;
+    text-align: center;
   }
 
   .list-count span {
@@ -1739,6 +1757,13 @@ nav > h1 {
     font-size: 3rem;
     color: white;
     text-transform: capitalize;
+  }
+
+  .list-count_container {
+    gap: 0rem;
+  }
+  .list-count > hr {
+    display: none;
   }
 
   .suggested-product {
@@ -1892,4 +1917,14 @@ label {
 
 .hidden-form {
   display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .authentication {
+    grid-column: 1 / span 2;
+  }
+
+  .backgorund {
+    display: none;
+  }
 }
