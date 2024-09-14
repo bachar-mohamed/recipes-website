@@ -81,7 +81,7 @@ class RecipePageView extends view {
         <button class="swipe-arrow left-arrow" type="button">&larr;</button>
         <ul class="similar-products_list">
         ${this._data[1].results
-          .map((prod) => {
+          .map((prod, index) => {
             console.log(`prod bookmark value is: ${prod.bookmarked}`);
             return `
           <li class="suggested-product">
@@ -89,7 +89,7 @@ class RecipePageView extends view {
               prod.image_url
             });" class="suggested-img ${
               prod.bookmarked == true ? "bookmarked" : ""
-            }" data-id=${prod.id}>
+            }" data-id=${prod.id} data-obj=${index}>
               <div class="bookmark-btn">
                <svg class="bookmark-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20.62"><polygon points="14 0 0 0 0 20.62 7 17.12 14 20.62 14 0" style="fill:#fff"/></svg></div>
               <button class="prod-link" >visit</button>
@@ -188,12 +188,11 @@ class RecipePageView extends view {
     });
   }
 
-  _slideToLeft() {
+  _slider() {
     this._parent.addEventListener("click", (e) => {
       const trigger = e.target;
       let modified = false;
       if (!e.target.classList.contains("swipe-arrow")) return;
-      console.log(`counter is ${this._counter}`);
       this._parent
         .querySelectorAll(".suggested-product")
         .forEach((product, _, array) => {

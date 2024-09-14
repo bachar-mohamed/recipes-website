@@ -3,6 +3,7 @@ import landingView from "../view/landingPageView.js";
 import recipeView from "../view/recipePageView.js";
 import shopView from "../view/shopView.js";
 import authenticationView from "../view/authenticationPageView.js";
+import BookmarkPageView from "../view/BookmarkPageView.js";
 
 const featuredProdLoader = async function (keyword) {
   await model.getPartialRecipes(keyword, undefined, 6);
@@ -24,9 +25,9 @@ const navigationHandler = function (destinationPage) {
   }
 };
 
-const addIdToBookMarks = function (id, addEntry) {
+const addIdToBookMarks = function (obj, addEntry) {
   console.log("controller function");
-  model.handleBookMarks(id, addEntry);
+  model.handleBookMarks(obj, addEntry);
 };
 
 const loadAuthenticationPage = function () {
@@ -43,6 +44,10 @@ const loadProductPage = async function (id, bookmarked) {
   );
   recipeView.render([model.state.recipe, model.state.fetchedRecipes]);
   recipeView._scrollViewUp();
+};
+
+const bookmarkPageLoader = function () {
+  BookmarkPageView.render(model.state.bookmarks);
 };
 
 const loadShopView = async function (keyword) {
@@ -71,12 +76,13 @@ const init = function () {
   recipeView._servingAdjuster();
   recipeView._loadMoreButtonHandler(loadShopView);
   recipeView._recipeBookmarkHandler(addIdToBookMarks);
-  recipeView._slideToLeft();
+  recipeView._slider();
   shopView._optionClickHandler(loadShopView);
   shopView._searchProductHandler(loadShopView);
   shopView._pageButtonClickHandler(loadNextPage);
   shopView._arrowButtonClickHandler(loadNextPage);
   shopView._addToBookMark(addIdToBookMarks);
+  authenticationView.clickHandler(bookmarkPageLoader);
 };
 
 init();

@@ -72,6 +72,13 @@ class AuthenticationPageView extends view {
       });
     });
   }
+
+  clickHandler(handler) {
+    this._parent.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("signUp-btn")) return;
+      handler();
+    });
+  }
 }
 
 export default new AuthenticationPageView();

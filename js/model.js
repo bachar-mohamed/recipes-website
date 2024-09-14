@@ -14,21 +14,15 @@ const state = {
     results: [],
   },
   recipe: {},
-  bookmarks: [
-    "664c8f193e7aa067e94e8706",
-    "664c8f193e7aa067e94e8610",
-    "664c8f193e7aa067e94e8534",
-    "664c8f193e7aa067e94e8531",
-  ],
+  bookmarks: [],
 };
 
-const handleBookMarks = function (recipeId, addEntry) {
-  console.log("model function");
+const handleBookMarks = function (recipeObj, addEntry) {
   if (addEntry) {
-    state.bookmarks.push(recipeId);
+    state.bookmarks.push(recipeObj);
   } else {
     state.bookmarks = state.bookmarks.filter((bookmark) => {
-      return bookmark !== recipeId;
+      return bookmark !== recipeObj;
     });
   }
   console.log("bookmarks array contains: ");
@@ -46,18 +40,18 @@ const getPartialRecipes = async function (
     if (data.length > 0 && state.bookmarks.length > 0) {
       Object.values(data).forEach((obj) => {
         for (const bookmark of state.bookmarks) {
-          obj.bookmarked = bookmark === obj.id ? true : false;
+          obj.bookmarked = bookmark.id === obj.id ? true : false;
           if (obj.bookmarked === true) {
             break;
           }
         }
       });
-      state.fetchedRecipes.keyword = keyword;
-      state.fetchedRecipes.totalProducts = data.length;
-      state.fetchedRecipes.totalPages = Math.ceil(
-        data.length / state.fetchedRecipes.resultsPerPage
-      );
     }
+    state.fetchedRecipes.keyword = keyword;
+    state.fetchedRecipes.totalProducts = data.length;
+    state.fetchedRecipes.totalPages = Math.ceil(
+      data.length / state.fetchedRecipes.resultsPerPage
+    );
     if (pageNumber == -1) {
       if (resultsPerPage != state.fetchedRecipes.resultsPerPage) {
         const unbookmarkedRecipes = data.filter(
@@ -113,3 +107,10 @@ function shuffle(array) {
 }
 
 export { state, getRecipe, getPartialRecipes, handleBookMarks };
+
+/*
+"664c8f193e7aa067e94e8706",
+    "664c8f193e7aa067e94e8610",
+    "664c8f193e7aa067e94e8534",
+    "664c8f193e7aa067e94e8531",
+*/

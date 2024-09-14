@@ -35,14 +35,14 @@ class ShopView extends View {
           </div>
           <ul class="products-ul">
           ${this._data.results
-            .map((product) => {
+            .map((product, index) => {
               return `
             <li class="suggested-product" >
               <div style="background-image:url(${
                 product.image_url
               });" class="suggested-img ${
                 product.bookmarked == true ? "bookmarked" : ""
-              }" data-id=${product.id}>
+              }" data-id=${product.id} data-obj=${index}>
                 <div class="bookmark-btn" >
                <svg class="bookmark-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20.62"><polygon points="14 0 0 0 0 20.62 7 17.12 14 20.62 14 0" style="fill:#fff"/></svg>
                 </div>
@@ -83,7 +83,7 @@ class ShopView extends View {
         `;
   }
 
-  _addToBookMark(handler) {
+  /*_addToBookMark(handler) {
     this._parent.addEventListener("click", (e) => {
       if (!e.target.closest(".bookmark-btn")) return;
       const trigger = e.target.closest(".bookmark-btn");
@@ -95,6 +95,23 @@ class ShopView extends View {
         parent.classList.add("bookmarked");
         handler(parent.dataset.id, true);
       }
+    });
+  }*/
+
+  _addToBookMark(handler) {
+    this._parent.addEventListener("click", (e) => {
+      if (!e.target.closest(".bookmark-btn")) return;
+      const trigger = e.target.closest(".bookmark-btn");
+      const buttonsContainer = trigger.closest(".suggested-img");
+      if (buttonsContainer.classList.contains("bookmarked")) {
+        buttonsContainer.classList.remove("bookmarked");
+        handler(this._data.results[buttonsContainer.dataset.obj], false);
+      } else {
+        buttonsContainer.classList.add("bookmarked");
+        handler(this._data.results[buttonsContainer.dataset.obj], true);
+      }
+      console.log("object is: ");
+      console.log(this._data.results[buttonsContainer.dataset.obj]);
     });
   }
 
