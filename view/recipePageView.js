@@ -113,15 +113,17 @@ class RecipePageView extends view {
       if (!e.target.classList.contains("bookmark-button")) return;
       const trigger = e.target;
       if (trigger.classList.contains("recipe-bookmarked")) {
-        console.log("contains");
-        console.log(trigger.dataset.id);
         trigger.classList.remove("recipe-bookmarked");
         trigger.textContent = "add to bookmarks";
-        handler(trigger.dataset.id, false);
+        console.log("the object removed from bookmarks is");
+        console.log(this._data[0]);
+        handler(this._data[0], false);
       } else {
         trigger.classList.add("recipe-bookmarked");
         trigger.textContent = "already in your bookmarks";
-        handler(trigger.dataset.id, true);
+        console.log("the object added to bookmarks is: ");
+        console.log(this._data[0]);
+        handler(this._data[0], true);
       }
     });
   }

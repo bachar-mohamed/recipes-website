@@ -5,8 +5,9 @@ class BookmarkPageView extends view {
 
   _generateMarkup() {
     return `
+    <section class="bookmark_section">
         <h1 class="bookmark_title">Your Bookmarks</h1>
-      <section class="bookmark_section">
+      <div class="bookmark_div_container">
         <div class="section_header">
           <div class="search_div">
             <input type="text" id="search_input" />
@@ -40,8 +41,8 @@ class BookmarkPageView extends view {
         ${this._data
           .map((info) => {
             return `
-            <li>
-            <div class="bookmarked_prod_img" style="background-image:url(${info.image_url}></div>
+            <li class="bookmarked_recipe" data-id = ${info.id}>
+            <div class="bookmarked_prod_img" style="background-image:url(${info.image_url})"></div>
             <div class="bookmarked_info">
               <h1>${info.title}</h1>
               <h3>${info.publisher}</h3>
@@ -70,8 +71,37 @@ class BookmarkPageView extends view {
           })
           .join("")}
         </ul>
+      </div>
       </section>
         `;
+  }
+
+  _searchInputHandler(handler) {
+    const searchInput = this._parent.querySelector("#search_input");
+    searchInput.addEventListener("input", (e) => {
+      handler(e.target.value);
+    });
+  }
+
+  _deleteBookMarkHandler(handler) {
+    this._parent.addEventListener("click", (e) => {
+      const trigger = e.target.closest(".delete_bookmark_btn");
+      if (!trigger) return;
+      const liParent = trigger.closest("li");
+      handler(liParent.dataset.id);
+    });
+  }
+
+  _recipeClickHandler(handler) {
+    const recipe = this._parent.addEventListener("click", (e) => {
+      if (
+        e.target.closest(".delete_bookmark_btn") ||
+        !e.target.closest(".bookmarked_recipe")
+      )
+        return;
+      const trigger = e.target.closest(".bookmarked_recipe");
+      handler(trigger.dataset.id, true);
+    });
   }
 }
 

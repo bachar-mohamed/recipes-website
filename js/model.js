@@ -17,12 +17,30 @@ const state = {
   bookmarks: [],
 };
 
+let bookmarkTemp;
+
+const bookmarkSearch = function (value = "") {
+  if (!bookmarkTemp) {
+    console.log("empty");
+    bookmarkTemp = state.bookmarks;
+  }
+  state.bookmarks = bookmarkTemp.filter((bookmark) => {
+    return bookmark.title.toLowerCase().includes(value.toLowerCase());
+  });
+};
+
+const deleteBookmark = function (id) {
+  state.bookmarks = state.bookmarks.filter((bookmark) => {
+    return bookmark.id != id;
+  });
+};
+
 const handleBookMarks = function (recipeObj, addEntry) {
   if (addEntry) {
     state.bookmarks.push(recipeObj);
   } else {
     state.bookmarks = state.bookmarks.filter((bookmark) => {
-      return bookmark !== recipeObj;
+      return bookmark.id !== recipeObj.id;
     });
   }
   console.log("bookmarks array contains: ");
@@ -106,11 +124,11 @@ function shuffle(array) {
   return temp;
 }
 
-export { state, getRecipe, getPartialRecipes, handleBookMarks };
-
-/*
-"664c8f193e7aa067e94e8706",
-    "664c8f193e7aa067e94e8610",
-    "664c8f193e7aa067e94e8534",
-    "664c8f193e7aa067e94e8531",
-*/
+export {
+  state,
+  getRecipe,
+  getPartialRecipes,
+  handleBookMarks,
+  bookmarkSearch,
+  deleteBookmark,
+};

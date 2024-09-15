@@ -16,7 +16,7 @@ export default class View {
 
   render(data) {
     if (!data || (Array.isArray(data) && data.length === 0)) {
-      return this.errorRanderer();
+      /*return this.errorRanderer();*/
     }
     this._data = data;
     const markUp = this._generateMarkup();
@@ -37,7 +37,7 @@ export default class View {
     this._parent.innerHTML = "";
   }
 
-  errorRanderer(message = this._errorMessage) {
+  /*errorRanderer(message = this._errorMessage) {
     const errorDiv = `
       <div class="error">
           <div>
@@ -49,21 +49,15 @@ export default class View {
       </div>`;
     this._clear();
     this._parent.insertAdjacentHTML("afterbegin", errorDiv);
-  }
+  }*/
 
-  update(data) {
+  /* update(data) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.errorRanderer();
     this._data = data;
     const newMarkUp = this._generateMarkup();
-    console.log("new markup");
-    console.log(newMarkUp);
     const newDom = document.createRange().createContextualFragment(newMarkUp);
-    console.log("new dom");
-    console.log(newDom);
     const newElements = Array.from(newDom.querySelectorAll("*"));
-    console.log("new elements");
-    console.log(newElements);
     const currElement = Array.from(this._parent.querySelectorAll("*"));
 
     newElements.forEach((el, i) => {
@@ -81,7 +75,7 @@ export default class View {
         });
       }
     });
-  }
+  }*/
 
   /*_shopButtonsClickHandler(handler) {
     this._navigationButtons.addEventListener("click", (e) => {

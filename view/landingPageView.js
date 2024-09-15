@@ -288,6 +288,13 @@ class LandingPageView extends view {
 `;
   }
 
+  _exploreClickHandler(handler) {
+    const exploreButton = this._parent.querySelector(".explore");
+    exploreButton.addEventListener("click", () => {
+      handler();
+    });
+  }
+
   _colapsibleTextHandler() {
     this._parent.addEventListener("click", (e) => {
       if (!e.target.closest(".title-area")) return;

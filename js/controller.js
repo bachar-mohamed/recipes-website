@@ -10,6 +10,7 @@ const featuredProdLoader = async function (keyword) {
   console.log(model.state.fetchedRecipes);
   landingView.render(model.state.fetchedRecipes);
   landingView._colapsibleTextHandler();
+  landingView._exploreClickHandler(loadShopView);
 };
 
 const navigationHandler = function (destinationPage) {
@@ -35,6 +36,16 @@ const loadAuthenticationPage = function () {
   authenticationView.switchForm();
 };
 
+const bookmarkSearchHandler = function (value) {
+  model.bookmarkSearch(value);
+  //BookmarkPageView.render(model.state.bookmarks);
+};
+
+const bookmarkDeletionHandler = function (id) {
+  model.deleteBookmark(id);
+  BookmarkPageView.render(model.state.bookmarks);
+};
+
 const loadProductPage = async function (id, bookmarked) {
   await model.getRecipe(id, bookmarked);
   await model.getPartialRecipes(
@@ -48,6 +59,7 @@ const loadProductPage = async function (id, bookmarked) {
 
 const bookmarkPageLoader = function () {
   BookmarkPageView.render(model.state.bookmarks);
+  BookmarkPageView._searchInputHandler(bookmarkSearchHandler);
 };
 
 const loadShopView = async function (keyword) {
@@ -83,6 +95,8 @@ const init = function () {
   shopView._arrowButtonClickHandler(loadNextPage);
   shopView._addToBookMark(addIdToBookMarks);
   authenticationView.clickHandler(bookmarkPageLoader);
+  BookmarkPageView._deleteBookMarkHandler(bookmarkDeletionHandler);
+  BookmarkPageView._recipeClickHandler(loadProductPage);
 };
 
 init();
