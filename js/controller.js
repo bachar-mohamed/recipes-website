@@ -2,7 +2,6 @@ import * as model from "./model.js";
 import landingView from "../view/landingPageView.js";
 import recipeView from "../view/recipePageView.js";
 import shopView from "../view/shopView.js";
-import authenticationView from "../view/authenticationPageView.js";
 import BookmarkPageView from "../view/BookmarkPageView.js";
 
 const featuredProdLoader = async function (keyword) {
@@ -20,7 +19,7 @@ const navigationHandler = function (destinationPage) {
   } else if (destinationPage === "shop") {
     loadShopView();
   } else if (destinationPage === "account") {
-    loadAuthenticationPage();
+    bookmarkPageLoader();
   } else {
     //do nothing for now
   }
@@ -29,11 +28,6 @@ const navigationHandler = function (destinationPage) {
 const addIdToBookMarks = function (obj, addEntry) {
   console.log("controller function");
   model.handleBookMarks(obj, addEntry);
-};
-
-const loadAuthenticationPage = function () {
-  authenticationView.render("hello");
-  authenticationView.switchForm();
 };
 
 const bookmarkSearchHandler = function (value) {
@@ -94,7 +88,6 @@ const init = function () {
   shopView._pageButtonClickHandler(loadNextPage);
   shopView._arrowButtonClickHandler(loadNextPage);
   shopView._addToBookMark(addIdToBookMarks);
-  authenticationView.clickHandler(bookmarkPageLoader);
   BookmarkPageView._deleteBookMarkHandler(bookmarkDeletionHandler);
   BookmarkPageView._recipeClickHandler(loadProductPage);
 };
