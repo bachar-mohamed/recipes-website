@@ -19,6 +19,12 @@ const state = {
 
 let bookmarkTemp;
 
+const instantiateBookmarks = function () {
+  const storage = localStorage.getItem("bookmarks");
+  if (!storage) return;
+  state.bookmarks = JSON.parse(storage);
+};
+
 const bookmarkSearch = function (value = "") {
   if (!bookmarkTemp) {
     console.log("empty");
@@ -26,12 +32,6 @@ const bookmarkSearch = function (value = "") {
   }
   state.bookmarks = bookmarkTemp.filter((bookmark) => {
     return bookmark.title.toLowerCase().includes(value.toLowerCase());
-  });
-};
-
-const deleteBookmark = function (id) {
-  state.bookmarks = state.bookmarks.filter((bookmark) => {
-    return bookmark.id != id;
   });
 };
 
@@ -43,7 +43,9 @@ const handleBookMarks = function (recipeObj, addEntry) {
       return bookmark.id !== recipeObj.id;
     });
   }
-  console.log("bookmarks array contains: ");
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+  console.log("localstorage items are");
+  console.log(JSON.parse(localStorage.getItem("bookmarks")));
   console.log(state.bookmarks);
 };
 
@@ -127,8 +129,8 @@ function shuffle(array) {
 export {
   state,
   getRecipe,
+  instantiateBookmarks,
   getPartialRecipes,
   handleBookMarks,
   bookmarkSearch,
-  deleteBookmark,
 };

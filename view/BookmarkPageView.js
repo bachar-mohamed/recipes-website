@@ -26,9 +26,9 @@ class BookmarkPageView extends view {
         </div>
         <ul class="products-ul">
         ${this._data
-          .map((info) => {
+          .map((info, index) => {
             return `
-            <li class="bookmarked_recipe" data-id = ${info.id}>
+            <li class="bookmarked_recipe" data-id=${info.id} data-index = ${index}>
             <div class="bookmarked_prod_img" style="background-image:url(${info.image_url})"></div>
             <div class="bookmarked_info">
               <h1>${info.title}</h1>
@@ -75,7 +75,7 @@ class BookmarkPageView extends view {
       const trigger = e.target.closest(".delete_bookmark_btn");
       if (!trigger) return;
       const liParent = trigger.closest("li");
-      handler(liParent.dataset.id);
+      handler(this._data[liParent.dataset.id], false);
     });
   }
 

@@ -35,8 +35,8 @@ const bookmarkSearchHandler = function (value) {
   //BookmarkPageView.render(model.state.bookmarks);
 };
 
-const bookmarkDeletionHandler = function (id) {
-  model.deleteBookmark(id);
+const bookmarkDeletionHandler = function (id, addEntry) {
+  model.handleBookMarks(id, addEntry);
   BookmarkPageView.render(model.state.bookmarks);
 };
 
@@ -71,6 +71,7 @@ const loadNextPage = async function (pageNumber) {
 };
 
 const init = function () {
+  model.instantiateBookmarks();
   featuredProdLoader();
   landingView._productClickHandler(loadProductPage);
   landingView._featuredProdClickHandler(featuredProdLoader);

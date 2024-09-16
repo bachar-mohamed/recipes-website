@@ -1953,13 +1953,19 @@ nav > h1 {
 .delete_bookmark_btn {
   min-width: 4rem;
   min-height: 4rem;
-  padding: 0.4rem;
+  padding: 0.2rem;
   border-color: transparent;
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
   transition-property: background-color;
   transition-duration: 0.5s;
+}
+
+.delete_bookmark_btn svg {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid black;
 }
 
 .delete_bookmark_btn:hover {
