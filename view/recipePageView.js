@@ -108,6 +108,13 @@ class RecipePageView extends view {
         `;
   }
 
+  renderError() {
+    console.log("from error renderer");
+    console.log(this._data);
+    if (this._data) return;
+    this.displayError(this._parent);
+  }
+
   _recipeBookmarkHandler(handler) {
     this._parent.addEventListener("click", (e) => {
       if (!e.target.classList.contains("bookmark-button")) return;
@@ -156,37 +163,6 @@ class RecipePageView extends view {
               : portion.textContent;
         });
       }
-    });
-  }
-
-  _productClickHandler(handler) {
-    this._parent.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("prod-link")) return;
-      const id = e.target.closest(".suggested-img").dataset.id;
-      const isBookmarked = e.target
-        .closest(".suggested-img")
-        .classList.contains("bookmarked");
-      handler(id, isBookmarked);
-    });
-  }
-
-  _showButtons() {
-    this._parent.addEventListener("mouseover", (e) => {
-      if (!e.target.closest("li").classList.contains("suggested-product"))
-        return;
-      this._trigger = e.target.closest("li");
-      this._prodImage = this._trigger.querySelector(".suggested-img");
-      this._prodImage.classList.add("zoom-in");
-      this._prodImage.classList.add("focused");
-    });
-  }
-
-  _hideButtons() {
-    this._parent.addEventListener("mouseout", (e) => {
-      if (!e.target.closest("li").classList.contains("suggested-product"))
-        return;
-      this._prodImage.classList.remove("zoom-in");
-      this._prodImage.classList.remove("focused");
     });
   }
 

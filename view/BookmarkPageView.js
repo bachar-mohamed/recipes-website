@@ -75,7 +75,9 @@ class BookmarkPageView extends view {
       const trigger = e.target.closest(".delete_bookmark_btn");
       if (!trigger) return;
       const liParent = trigger.closest("li");
-      handler(this._data[liParent.dataset.id], false);
+      console.log("hello there ");
+      console.log(liParent);
+      handler(this._data[liParent.dataset.index], false);
     });
   }
 

@@ -44,8 +44,6 @@ const handleBookMarks = function (recipeObj, addEntry) {
     });
   }
   localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
-  console.log("localstorage items are");
-  console.log(JSON.parse(localStorage.getItem("bookmarks")));
   console.log(state.bookmarks);
 };
 

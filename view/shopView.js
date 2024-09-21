@@ -20,7 +20,7 @@ class ShopView extends View {
           <div class="recipe_categories">
             <h1 class="title">shop by</h1>
             <nav>
-              <h1 class="recipe-name" data-keyword="pizza">pizza</h1>
+              <h1 class="recipe-name " data-keyword="pizza">pizza</h1>
               <h1 class="recipe-name" data-keyword="tacos">tacos</h1>
               <h1 class="recipe-name" data-keyword="burger">burger</h1>
               <h1 class="recipe-name" data-keyword="grill">grill</h1>
@@ -46,7 +46,7 @@ class ShopView extends View {
                 <div class="bookmark-btn" >
                <svg class="bookmark-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20.62"><polygon points="14 0 0 0 0 20.62 7 17.12 14 20.62 14 0" style="fill:#fff"/></svg>
                 </div>
-                <button type="buttob" class="prod-link">visit</button>
+                <button type="button" class="prod-link" data-hash="#product-details">visit</button>
               </div>
               <h1>${product.title}</h1>
             </li>
@@ -83,7 +83,14 @@ class ShopView extends View {
         `;
   }
 
-  /*_addToBookMark(handler) {
+  renderError() {
+    const target = this._parent.querySelector(".products-ul");
+    console.log(this._data);
+    if (this._data.results.length) return;
+    this.displayError(target);
+  }
+
+  _addToBookMark(handler) {
     this._parent.addEventListener("click", (e) => {
       if (!e.target.closest(".bookmark-btn")) return;
       const trigger = e.target.closest(".bookmark-btn");
@@ -96,7 +103,7 @@ class ShopView extends View {
         handler(parent.dataset.id, true);
       }
     });
-  }*/
+  }
 
   _addToBookMark(handler) {
     this._parent.addEventListener("click", (e) => {
@@ -158,6 +165,36 @@ class ShopView extends View {
       ) {
         element.classList.add("selected");
       }
+    });
+  }
+  _productClickHandler(handler) {
+    this._parent.addEventListener("click", (e) => {
+      if (!e.target.classList.contains("prod-link")) return;
+      const id = e.target.closest(".suggested-img").dataset.id;
+      const isBookmarked = e.target
+        .closest(".suggested-img")
+        .classList.contains("bookmarked");
+      handler(id, isBookmarked);
+    });
+  }
+
+  _showButtons() {
+    this._parent.addEventListener("mouseover", (e) => {
+      if (!e.target.closest("li").classList.contains("suggested-product"))
+        return;
+      this._trigger = e.target.closest("li");
+      this._prodImage = this._trigger.querySelector(".suggested-img");
+      this._prodImage.classList.add("zoom-in");
+      this._prodImage.classList.add("focused");
+    });
+  }
+
+  _hideButtons() {
+    this._parent.addEventListener("mouseout", (e) => {
+      if (!e.target.closest("li").classList.contains("suggested-product"))
+        return;
+      this._prodImage.classList.remove("zoom-in");
+      this._prodImage.classList.remove("focused");
     });
   }
 }

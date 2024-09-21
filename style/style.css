@@ -33,9 +33,53 @@ li {
   list-style: none;
 }
 
+@keyframes loading {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(180deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
 a {
   text-decoration: none;
   color: #664d36;
+}
+
+.spinner {
+  width: 100%;
+  height: calc(100vh - 9rem);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.loading {
+  width: 4rem;
+  height: 4rem;
+  animation: loading 1s infinite;
+}
+
+.alert_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.alert {
+  width: 8rem;
+  height: 8rem;
+}
+
+.alert_container p {
+  font-size: 1.2rem;
 }
 
 section {
@@ -146,6 +190,7 @@ main {
       rgba(0, 0, 0, 1)
     ),
     url("/resources/background.jpg");
+  width: 100%;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -486,6 +531,11 @@ main {
   margin-top: 3rem;
   padding: 1em 3em;
   box-shadow: 0px 0px 5px -1px black;
+  cursor: pointer;
+}
+.disabled {
+  background-color: grey;
+  cursor: not-allowed;
 }
 
 .store-stats {
@@ -1953,11 +2003,14 @@ nav > h1 {
 .delete_bookmark_btn {
   min-width: 4rem;
   min-height: 4rem;
-  padding: 0.2rem;
+  padding-top: 0.6rem;
   border-color: transparent;
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -1965,7 +2018,7 @@ nav > h1 {
 .delete_bookmark_btn svg {
   width: 3rem;
   height: 3rem;
-  border: 2px solid black;
+  /*border: 2px solid black;*/
 }
 
 .delete_bookmark_btn:hover {

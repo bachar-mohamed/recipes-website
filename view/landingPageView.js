@@ -9,7 +9,7 @@ class LandingPageView extends view {
             <section class="homepage-image">
 
         <h1>explore with freedom</h1>
-        <button class="explore">explore</button>        
+        <button class="explore" data-hash ="#shop">explore</button>        
   </div>
       </section>
 
@@ -250,7 +250,11 @@ class LandingPageView extends view {
             .join("")}
             
           </ul>
-          <button class="load-more">load more</button>
+          <button class="load-more ${
+            this._data.results == 0 ? "disabled" : ""
+          }" data-hash ="#shop" ${
+      this._data.results == 0 ? "disabled" : ""
+    } >load more</button>
         </div>
         <div class="store-stats">
           <ul>
@@ -288,10 +292,18 @@ class LandingPageView extends view {
 `;
   }
 
+  renderError() {
+    const target = this._parent.querySelector(".products-display");
+    console.log(this._data);
+    if (this._data.results.length) return;
+    this.displayError(target);
+  }
+
   _exploreClickHandler(handler) {
     const exploreButton = this._parent.querySelector(".explore");
     exploreButton.addEventListener("click", () => {
-      handler();
+      const hash = exploreButton.dataset.hash;
+      handler(undefined, hash);
     });
   }
 
