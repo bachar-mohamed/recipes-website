@@ -9,7 +9,7 @@ class LandingPageView extends view {
             <section class="homepage-image">
 
         <h1>explore with freedom</h1>
-        <button class="explore" data-hash ="#shop">explore</button>        
+        <button class="explore">explore</button>        
   </div>
       </section>
 
@@ -302,8 +302,7 @@ class LandingPageView extends view {
   _exploreClickHandler(handler) {
     const exploreButton = this._parent.querySelector(".explore");
     exploreButton.addEventListener("click", () => {
-      const hash = exploreButton.dataset.hash;
-      handler(undefined, hash);
+      handler();
     });
   }
 
@@ -321,7 +320,7 @@ class LandingPageView extends view {
       if (!e.target.closest("li").classList.contains("product")) return;
       const trigger = e.target.closest("li");
       const id = trigger.dataset.id;
-      handler(id);
+      handler(id, undefined);
     });
   }
 

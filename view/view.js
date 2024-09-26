@@ -37,11 +37,20 @@ export default class View {
 
   _pagesNavigator(handler) {
     window.addEventListener("hashchange", () => {
-      const newHash = location.hash.slice(1);
-      location.hash = newHash;
-      console.log(newHash);
-      handler(newHash);
+      const endpoint = location.hash.slice(1).split("/");
+      const value = endpoint[endpoint.length - 1];
+      console.log("new hash: ");
+      console.log(value);
+      handler(value);
     });
+  }
+
+  _setUrl(url = "#home", endpoint = "") {
+    const fullPath = `${url}${!endpoint ? "" : `/${endpoint}`}`;
+    if (location.hash !== fullPath) {
+      console.log(`pushing state: ${fullPath}`);
+      history.pushState({}, "", fullPath);
+    }
   }
 
   displayError(container) {
@@ -62,42 +71,42 @@ export default class View {
       handler(e.target.dataset.dest);
     });
   }
-}
 
-/* update(data) {
+  update(data) {
     if (!data || (Array.isArray(data) && data.length === 0))
-      return this.errorRanderer();
-    this._data = data;
+      //return this.errorRanderer();
+      this._data = data;
     const newMarkUp = this._generateMarkup();
     const newDom = document.createRange().createContextualFragment(newMarkUp);
     const newElements = Array.from(newDom.querySelectorAll("*"));
     const currElement = Array.from(this._parent.querySelectorAll("*"));
 
-    newElements.forEach((el, i) => {
+    newElements.forEach((newEl, i) => {
       const currentEl = currElement[i];
       if (
-        !el.isEqualNode(currentEl) &&
-        currentEl.firstChild.nodeValue.trim() !== ""
+        !newEl.isEqualNode(currentEl) &&
+        !currentEl?.firstChild.nodeValue.trim()
       ) {
-        currentEl.textContent = el.textContent;
+        currentEl.textContent = newEl.textContent;
       }
 
-      if (!el.isEqualNode(currentEl)) {
-        Array.from(el.attributes).forEach((attr, i) => {
+      if (!newEl.isEqualNode(currentEl)) {
+        Array.from(newEl.attributes).forEach((attr, i) => {
           currentEl.setAttribute(attr.name, attr.value);
         });
       }
     });
-  }*/
+  }
+}
 
 /*_shopButtonsClickHandler(handler) {
     this._navigationButtons.addEventListener("click", (e) => {
       if (!e.target.classList.contains("shop")) return;
       handler();
     });
-  }*/
+  }
 
-/*
+
 <use href="${icons}#icon-loader"></use>
 <use href="${icons}#icon-alert-triangle"></use>
 */

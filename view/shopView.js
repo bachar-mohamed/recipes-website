@@ -167,10 +167,12 @@ class ShopView extends View {
       }
     });
   }
+
   _productClickHandler(handler) {
     this._parent.addEventListener("click", (e) => {
       if (!e.target.classList.contains("prod-link")) return;
-      const id = e.target.closest(".suggested-img").dataset.id;
+      const parent = e.target.closest(".suggested-img");
+      const id = parent.dataset.id;
       const isBookmarked = e.target
         .closest(".suggested-img")
         .classList.contains("bookmarked");
