@@ -54,7 +54,8 @@ const getPartialRecipes = async function (
 ) {
   try {
     const url = `${APIURL}${keyword}&key=${KEY}`;
-    const data = await jsonCall(url);
+    const temp = await jsonCall(url);
+    const data = shuffle(temp);
     if (data.length > 0 && state.bookmarks.length > 0) {
       Object.values(data).forEach((obj) => {
         for (const bookmark of state.bookmarks) {

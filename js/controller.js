@@ -49,6 +49,8 @@ const homePageEventListeners = function () {
   landingView._loadMoreButtonHandler(shopPageLoader);
   landingView._navigationButtonsClickHandler(navigationHandler);
   landingView._pagesNavigator(navigationHandler);
+  landingView.headerButtonHandler();
+  landingView.menuButtonClickHandler();
 };
 
 const productPageEventListeners = function () {
@@ -75,8 +77,6 @@ const shopPageEventListeners = function () {
 };
 
 const navigationHandler = function (destinationPage) {
-  console.log("navigating to: ");
-  console.log(destinationPage);
   if (destinationPage === "home") {
     homePageLoader();
   } else if (destinationPage === "shop") {
@@ -109,6 +109,7 @@ const productAnimationHandler = function () {
 };
 
 const loadNextPage = async function (pageNumber) {
+  shopView.renderSpinner();
   await model.getPartialRecipes(undefined, pageNumber);
   shopView.render(model.state.fetchedRecipes);
   shopView._scrollViewUp();

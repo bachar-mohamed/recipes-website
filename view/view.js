@@ -1,8 +1,7 @@
-//import icons from "../resources/icons.svg";
-
 export default class View {
   _data;
   _navigationButtons = document.querySelector("header");
+  _set = false;
 
   renderSpinner = function () {
     const spinner = `<div class="spinner">
@@ -51,6 +50,47 @@ export default class View {
       console.log(`pushing state: ${fullPath}`);
       history.pushState({}, "", fullPath);
     }
+  }
+
+  headerButtonHandler() {
+    const header = document.querySelector("header");
+    const menuButton = header.querySelector(".menu_button");
+    const dropDownTab = document.querySelector(".menu_container");
+    addEventListener("resize", () => {
+      if (
+        (window.screen.width < 768 &&
+          menuButton.classList.contains("hidden")) ||
+        (window.screen.width > 768 && !menuButton.classList.contains("hidden"))
+      ) {
+        menuButton.classList.toggle("hidden");
+        const headerButtons = header.querySelectorAll(".header-element");
+        headerButtons.forEach((element) => {
+          element.classList.toggle("hidden");
+        });
+        dropDownTab.classList.toggle("hidden");
+      }
+    });
+  }
+
+  menuButtonClickHandler() {
+    const menu = document.querySelector(".drop_down_menu");
+    let menuButton;
+    document.addEventListener("click", (e) => {
+      console.log("a click is triggered");
+      if (e.target.classList.contains("menu_button")) {
+        console.log("inside first if");
+        menu.classList.toggle("collapsed");
+        menuButton = e.target;
+        menuButton.classList.toggle("rotate-btn");
+      } else if (
+        e.target.closest(".menu_container") ||
+        e.target.classList.contains("logo")
+      ) {
+        console.log("inside else");
+        menu.classList.add("collapsed");
+        menuButton.classList.remove("rotate-btn");
+      }
+    });
   }
 
   displayError(container) {

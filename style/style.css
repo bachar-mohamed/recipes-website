@@ -58,10 +58,11 @@ a {
   justify-content: center;
   align-items: center;
 }
+
 .loading {
   width: 4rem;
   height: 4rem;
-  animation: loading 1s infinite;
+  animation: loading 2s infinite linear;
 }
 
 .alert_container {
@@ -171,6 +172,61 @@ header {
   padding: 0.8em 1.5em;
   background-color: black;
   border-radius: 0.3em;
+}
+
+.menu_button {
+  width: 3rem;
+  height: 3.3rem;
+  background-image: url("../resources/menu_icon.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  grid-column: 3;
+  justify-self: flex-end;
+  transition-property: transform;
+  transition-duration: 0.1s;
+}
+
+.menu_container {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  background-color: burlywood;
+  overflow: hidden;
+}
+
+.drop_down_menu {
+  padding: 2rem;
+  gap: 2rem;
+  width: 100%;
+  height: calc(100vh - 9rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transition-property: height;
+  transition-duration: 0.1s;
+}
+
+.collapsed {
+  padding: 0;
+  height: 0;
+}
+
+.drop_down_menu > li {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.drop_down_menu > li:nth-child(4) {
+  margin-bottom: auto;
+}
+
+.drop_down_menu > li:last-child {
+  background-color: black;
+  padding: 1em 4em;
+  border-radius: 1rem;
 }
 
 main {
@@ -479,6 +535,7 @@ main {
   gap: 2rem;
   transition-property: background-color;
   transition-duration: 0.5s;
+  cursor: pointer;
 }
 
 .product:hover {
@@ -715,20 +772,6 @@ main {
     font-family: "Sparky";
   }
 
-  .navigation-list,
-  .account {
-    display: none;
-  }
-
-  .nav_button.nav_button {
-    display: block;
-    width: 3rem;
-    height: 3rem;
-    grid-column: 3;
-    justify-self: flex-end;
-    background-color: #664d36;
-  }
-
   .homepage-image > h1 {
     font-size: 6rem;
     font-weight: 300;
@@ -903,7 +946,6 @@ main {
   }
 
   .homepage-image > h1 {
-    /*font-size: 12vw;*/
     font-size: 7rem;
     font-weight: 300;
     text-align: center;
@@ -943,7 +985,8 @@ main {
 }
 
 .prod-img {
-  width: 100%;
+  width: 80%;
+  height: 40vw;
   border-radius: 1rem;
   box-shadow: 0px 0px 10px -1px black;
 }
@@ -1057,8 +1100,8 @@ main {
   align-items: flex-start;
   overflow-y: scroll;
   gap: 1rem;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .ingredients-container > ul ::-webkit-scrollbar {
@@ -1133,11 +1176,17 @@ main {
   align-items: center;
 }
 
-.similar-products_container button:not(.prod-link) {
+.swipe-arrow {
   border-radius: 50%;
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
+  padding: 1rem;
   border-color: transparent;
+  background-image: url("../resources/arrow.png");
+  background-position: center;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .similar-products_list {
@@ -1299,6 +1348,7 @@ main {
   background-color: #664d36;
   color: white;
   border: none;
+  cursor: pointer;
 }
 
 nav {
@@ -1315,6 +1365,7 @@ nav > h1 {
   font-weight: 400;
   text-transform: capitalize;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .selected {
@@ -1412,6 +1463,7 @@ nav > h1 {
   border-radius: 0.2rem;
   transition-property: top, opacity;
   transition-duration: 0.5s;
+  cursor: pointer;
 }
 
 .bookmark-svg {
@@ -1449,6 +1501,7 @@ nav > h1 {
   margin: auto;
   color: white;
   font-size: 2rem;
+  cursor: pointer;
   transition-property: bottom, opacity;
   transition-duration: 0.5s;
 }
@@ -1503,13 +1556,17 @@ nav > h1 {
 }
 
 .page-btn {
+  width: 4rem;
+  height: 4rem;
   background-color: white;
   color: rgb(37, 37, 37);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
+  text-align: center;
+  line-height: 4rem;
   border: 1px solid #bf9410;
-  padding: 1em;
-  border-radius: 0.6rem;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .page-selected {
@@ -1517,10 +1574,16 @@ nav > h1 {
   color: white;
 }
 .arrow {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: black;
-  padding: 0.6em;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  background-image: url("../resources/arrow.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.left-arrow {
+  transform: rotateZ(180deg);
 }
 
 .hidden {

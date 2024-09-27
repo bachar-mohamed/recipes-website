@@ -13,14 +13,14 @@ class ShopView extends View {
           <div class="search-container">
             <h1 class="title">Search</h1>
             <div>
-              <input class="search-input" type="text" placeholder="pizza" />
+              <input class="search-input" type="text" placeholder="search a recipe...." />
               <button class="search-prod_button">search</button>
             </div>
           </div>
           <div class="recipe_categories">
             <h1 class="title">shop by</h1>
             <nav>
-              <h1 class="recipe-name " data-keyword="pizza">pizza</h1>
+              <h1 class="recipe-name" data-keyword="pizza">pizza</h1>
               <h1 class="recipe-name" data-keyword="tacos">tacos</h1>
               <h1 class="recipe-name" data-keyword="burger">burger</h1>
               <h1 class="recipe-name" data-keyword="grill">grill</h1>
@@ -59,7 +59,7 @@ class ShopView extends View {
           }">
             <div class="arrow left-arrow ${
               this._data.currentPage == 1 ? "hidden" : ""
-            }">&larr;</div>
+            }"></div>
             <ul class="page-number">
               ${new Array(this._data.totalPages)
                 .fill("")
@@ -75,7 +75,8 @@ class ShopView extends View {
             </ul>
             <div class=" arrow right-arrow ${
               this._data.currentPage == this._data.totalPages ? "hidden" : ""
-            }">&rarr;</div>
+            }">
+            </div>
           </div>
         </div>
       </section>
@@ -132,8 +133,9 @@ class ShopView extends View {
 
   _arrowButtonClickHandler(handler) {
     this._parent.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("arrow")) return;
-      if (e.target.classList.contains("left-arrow")) {
+      if (!e.target.closest(".arrow")) return;
+      const parent = e.target.closest(".arrow");
+      if (parent.classList.contains("left-arrow")) {
         handler(this._data.currentPage - 1);
       } else {
         handler(this._data.currentPage + 1);
@@ -182,7 +184,7 @@ class ShopView extends View {
 
   _showButtons() {
     this._parent.addEventListener("mouseover", (e) => {
-      if (!e.target.closest("li").classList.contains("suggested-product"))
+      if (!e.target.closest("li")?.classList.contains("suggested-product"))
         return;
       this._trigger = e.target.closest("li");
       this._prodImage = this._trigger.querySelector(".suggested-img");
@@ -193,7 +195,7 @@ class ShopView extends View {
 
   _hideButtons() {
     this._parent.addEventListener("mouseout", (e) => {
-      if (!e.target.closest("li").classList.contains("suggested-product"))
+      if (!e.target.closest("li")?.classList.contains("suggested-product"))
         return;
       this._prodImage.classList.remove("zoom-in");
       this._prodImage.classList.remove("focused");

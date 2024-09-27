@@ -78,7 +78,8 @@ class RecipePageView extends view {
       <section class="similar-products">
         <h1>you may also like</h1>
         <div class="similar-products_container">
-        <button class="swipe-arrow left-arrow" type="button">&larr;</button>
+        <button class="swipe-arrow left-arrow" type="button">
+        </button>
         <ul class="similar-products_list">
         ${this._data[1].results
           .map((prod, index) => {
@@ -100,7 +101,8 @@ class RecipePageView extends view {
           })
           .join("")}
         </ul>
-       <button class="swipe-arrow right-arrow" type="button">&rarr;</button>
+       <button class="swipe-arrow right-arrow" type="button">
+       </button>
         </div>
         <button class="show-all">show all</button>
       </section>
