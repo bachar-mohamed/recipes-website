@@ -17,22 +17,10 @@ const state = {
   bookmarks: [],
 };
 
-let bookmarkTemp;
-
 const instantiateBookmarks = function () {
   const storage = localStorage.getItem("bookmarks");
   if (!storage) return;
   state.bookmarks = JSON.parse(storage);
-};
-
-const bookmarkSearch = function (value = "") {
-  if (!bookmarkTemp) {
-    console.log("empty");
-    bookmarkTemp = state.bookmarks;
-  }
-  state.bookmarks = bookmarkTemp.filter((bookmark) => {
-    return bookmark.title.toLowerCase().includes(value.toLowerCase());
-  });
 };
 
 const handleBookMarks = function (recipeObj, addEntry) {

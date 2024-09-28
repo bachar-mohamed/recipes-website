@@ -44,32 +44,36 @@ export default class View {
     });
   }
 
-  _setUrl(url = "#home", endpoint = "") {
+  _setUrl(url = "#home", endpoint = "", state = {}) {
     const fullPath = `${url}${!endpoint ? "" : `/${endpoint}`}`;
     if (location.hash !== fullPath) {
       console.log(`pushing state: ${fullPath}`);
-      history.pushState({}, "", fullPath);
+      history.pushState(state, "", fullPath);
     }
   }
 
-  headerButtonHandler() {
-    const header = document.querySelector("header");
-    const menuButton = header.querySelector(".menu_button");
-    const dropDownTab = document.querySelector(".menu_container");
+  screenResizeHandler() {
+    const menuButton = document.querySelector(".menu_button");
     addEventListener("resize", () => {
       if (
         (window.screen.width < 768 &&
           menuButton.classList.contains("hidden")) ||
         (window.screen.width > 768 && !menuButton.classList.contains("hidden"))
       ) {
-        menuButton.classList.toggle("hidden");
-        const headerButtons = header.querySelectorAll(".header-element");
-        headerButtons.forEach((element) => {
-          element.classList.toggle("hidden");
-        });
-        dropDownTab.classList.toggle("hidden");
+        this.headerButtonsManager(menuButton);
       }
     });
+  }
+
+  headerButtonsManager(menuButton) {
+    const header = document.querySelector("header");
+    const dropDownTab = document.querySelector(".menu_container");
+    menuButton.classList.toggle("hidden");
+    const headerButtons = header.querySelectorAll(".header-element");
+    headerButtons.forEach((element) => {
+      element.classList.toggle("hidden");
+    });
+    dropDownTab.classList.toggle("hidden");
   }
 
   menuButtonClickHandler() {
@@ -111,42 +115,4 @@ export default class View {
       handler(e.target.dataset.dest);
     });
   }
-
-  update(data) {
-    if (!data || (Array.isArray(data) && data.length === 0))
-      //return this.errorRanderer();
-      this._data = data;
-    const newMarkUp = this._generateMarkup();
-    const newDom = document.createRange().createContextualFragment(newMarkUp);
-    const newElements = Array.from(newDom.querySelectorAll("*"));
-    const currElement = Array.from(this._parent.querySelectorAll("*"));
-
-    newElements.forEach((newEl, i) => {
-      const currentEl = currElement[i];
-      if (
-        !newEl.isEqualNode(currentEl) &&
-        !currentEl?.firstChild.nodeValue.trim()
-      ) {
-        currentEl.textContent = newEl.textContent;
-      }
-
-      if (!newEl.isEqualNode(currentEl)) {
-        Array.from(newEl.attributes).forEach((attr, i) => {
-          currentEl.setAttribute(attr.name, attr.value);
-        });
-      }
-    });
-  }
 }
-
-/*_shopButtonsClickHandler(handler) {
-    this._navigationButtons.addEventListener("click", (e) => {
-      if (!e.target.classList.contains("shop")) return;
-      handler();
-    });
-  }
-
-
-<use href="${icons}#icon-loader"></use>
-<use href="${icons}#icon-alert-triangle"></use>
-*/

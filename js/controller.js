@@ -14,10 +14,9 @@ const homePageLoader = async function (keyword) {
 };
 
 const productPageLoader = async function (id, bookmarked) {
-  console.log(`id : ${id},bookmarked: ${bookmarked},prodName : ${id}`);
-  recipeView._setUrl("#shop", id);
+  recipeView._setUrl("#shop", id, { bookmarked });
   recipeView.renderSpinner();
-  await model.getRecipe(id, bookmarked);
+  await model.getRecipe(id, window.history.state.bookmarked);
   await model.getPartialRecipes(
     model.state.fetchedRecipes.keyword,
     undefined,
@@ -30,7 +29,6 @@ const productPageLoader = async function (id, bookmarked) {
 const bookmarkPageLoader = function () {
   BookmarkPageView.renderSpinner();
   BookmarkPageView.render(model.state.bookmarks);
-  BookmarkPageView._searchInputHandler(bookmarkSearchHandler);
 };
 
 const shopPageLoader = async function (keyword) {
@@ -49,7 +47,7 @@ const homePageEventListeners = function () {
   landingView._loadMoreButtonHandler(shopPageLoader);
   landingView._navigationButtonsClickHandler(navigationHandler);
   landingView._pagesNavigator(navigationHandler);
-  landingView.headerButtonHandler();
+  landingView.screenResizeHandler();
   landingView.menuButtonClickHandler();
 };
 
@@ -90,11 +88,6 @@ const navigationHandler = function (destinationPage) {
 
 const addIdToBookMarks = function (obj, addEntry) {
   model.handleBookMarks(obj, addEntry);
-};
-
-const bookmarkSearchHandler = function (value) {
-  model.bookmarkSearch(value);
-  //BookmarkPageView.render(model.state.bookmarks);
 };
 
 const bookmarkDeletionHandler = function (id, addEntry) {

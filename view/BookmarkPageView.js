@@ -5,24 +5,10 @@ class BookmarkPageView extends view {
 
   _generateMarkup() {
     return `
-    <section class="bookmark_section">
-        <h1 class="bookmark_title">Your Bookmarks</h1>
+    <section class="bookmark_section">   
       <div class="bookmark_div_container">
         <div class="section_header">
-          <div class="search_div">
-            <input type="text" id="search_input" />
-            <svg
-              class="search_svg"
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-              viewBox="-5.0 -10.0 110.0 135.0"
-            >
-              <path
-                d="m38.5 5c-18.5 0-33.5 15-33.5 33.5s15 33.5 33.5 33.5c7.9883 0 15.328-2.7969 21.086-7.4648l29.438 29.441c1.3672 1.3672 3.5859 1.3672 4.9531 0 1.3672-1.3672 1.3672-3.5859 0-4.9531l-29.441-29.438c4.668-5.7578 7.4648-13.098 7.4648-21.086 0-18.5-15-33.5-33.5-33.5zm-26.5 33.5c0-14.637 11.863-26.5 26.5-26.5s26.5 11.863 26.5 26.5-11.863 26.5-26.5 26.5-26.5-11.863-26.5-26.5z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </div>
+      <h1 class="bookmark_title">Your Bookmarks</h1>
         </div>
         <ul class="products-ul">
         ${this._data
@@ -61,13 +47,6 @@ class BookmarkPageView extends view {
       </div>
       </section>
         `;
-  }
-
-  _searchInputHandler(handler) {
-    const searchInput = this._parent.querySelector("#search_input");
-    searchInput.addEventListener("input", (e) => {
-      handler(e.target.value);
-    });
   }
 
   _deleteBookMarkHandler(handler) {

@@ -62,9 +62,7 @@ class RecipePageView extends view {
             <button class="bookmark-button ${
               this._data[0].bookmarked ? "recipe-bookmarked" : ""
             }"  data-id="${this._data[0].id}">${
-      this._data[0].bookmarked
-        ? "already in your bookmarks"
-        : "add to bookmarks"
+      this._data[0].bookmarked ? "bookmarked" : "add to bookmarks"
     }</button>
           </div>
         </div>
@@ -129,7 +127,7 @@ class RecipePageView extends view {
         handler(this._data[0], false);
       } else {
         trigger.classList.add("recipe-bookmarked");
-        trigger.textContent = "already in your bookmarks";
+        trigger.textContent = "bookmarked";
         console.log("the object added to bookmarks is: ");
         console.log(this._data[0]);
         handler(this._data[0], true);
@@ -170,21 +168,31 @@ class RecipePageView extends view {
 
   _slider() {
     this._parent.addEventListener("click", (e) => {
+      const container = this._parent.querySelector(".similar-products_list");
+      console.log(getComputedStyle(container).width);
       const trigger = e.target;
       let modified = false;
       if (!e.target.classList.contains("swipe-arrow")) return;
+      let translationAmount;
       this._parent
         .querySelectorAll(".suggested-product")
         .forEach((product, _, array) => {
           const gap = Number.parseInt(getComputedStyle(product).marginLeft);
-          const translationAmount =
+          translationAmount =
             Number.parseInt(getComputedStyle(product).width) + gap * 2;
           if (trigger.classList.contains("right-arrow")) {
             if (!modified) {
               this._counter++;
               modified = true;
             }
-            if (this._counter < array.length - 2) {
+            if (
+              this._counter <
+              array.length -
+                Math.trunc(
+                  Number.parseInt(getComputedStyle(container).width) /
+                    translationAmount
+                )
+            ) {
               product.style.transform = `translateX(-${
                 translationAmount * this._counter
               }px)`;
