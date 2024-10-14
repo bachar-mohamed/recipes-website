@@ -94,11 +94,14 @@ a:hover {
   cursor: pointer;
 }
 
-header {
+header,
+footer {
   width: 100%;
   height: 9rem;
   padding: 0rem 4rem 0rem 4rem;
   background-color: #ffd748;
+}
+header {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   place-items: center;
@@ -219,7 +222,7 @@ header {
   text-transform: uppercase;
 }
 
-.drop_down_menu > li:nth-child(4) {
+.drop_down_menu > li:nth-child(2) {
   margin-bottom: auto;
 }
 
@@ -1397,7 +1400,7 @@ nav > h1 {
 }
 
 .list-count > hr {
-  width: 85%;
+  width: 80%;
 }
 
 .list-count > p {
@@ -1947,7 +1950,7 @@ nav > h1 {
 .bookmark_section {
   width: 100%;
   height: calc(100vh - 9rem);
-  border: 2px solid black;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

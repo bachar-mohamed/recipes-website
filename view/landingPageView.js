@@ -45,7 +45,7 @@ class LandingPageView extends view {
   <path d="m87.98 33.457c-0.37109 0-0.73047-0.14844-0.99219-0.41016l-13.562-13.562c-0.26172-0.26562-0.41016-0.62109-0.41016-0.99219 0-0.37109 0.14844-0.72656 0.41016-0.98828l4.5195-4.5234c0.26172-0.26172 0.62109-0.41016 0.99219-0.41016s0.72656 0.14844 0.98828 0.41016l13.562 13.566c0.26562 0.26172 0.41016 0.61719 0.41016 0.98828s-0.14453 0.72656-0.41016 0.98828l-4.5195 4.5195v0.003906c-0.26172 0.26172-0.61719 0.41016-0.98828 0.41016zm-11.582-14.965 11.582 11.586 2.5391-2.543-11.582-11.586z"/>
  </g>
 
-            <h1>we cook with passion</h1>
+            <h1>title 1</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
               labore esse accusamus, voluptatem quam perferendis id iure fuga
@@ -83,7 +83,7 @@ class LandingPageView extends view {
   <path d="m87.98 33.457c-0.37109 0-0.73047-0.14844-0.99219-0.41016l-13.562-13.562c-0.26172-0.26562-0.41016-0.62109-0.41016-0.99219 0-0.37109 0.14844-0.72656 0.41016-0.98828l4.5195-4.5234c0.26172-0.26172 0.62109-0.41016 0.99219-0.41016s0.72656 0.14844 0.98828 0.41016l13.562 13.566c0.26562 0.26172 0.41016 0.61719 0.41016 0.98828s-0.14453 0.72656-0.41016 0.98828l-4.5195 4.5195v0.003906c-0.26172 0.26172-0.61719 0.41016-0.98828 0.41016zm-11.582-14.965 11.582 11.586 2.5391-2.543-11.582-11.586z"/>
  </g>
 
-            <h1>book a table online</h1>
+            <h1>title 2</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
               labore esse accusamus, voluptatem quam perferendis id iure fuga
@@ -121,7 +121,7 @@ class LandingPageView extends view {
   <path d="m87.98 33.457c-0.37109 0-0.73047-0.14844-0.99219-0.41016l-13.562-13.562c-0.26172-0.26562-0.41016-0.62109-0.41016-0.99219 0-0.37109 0.14844-0.72656 0.41016-0.98828l4.5195-4.5234c0.26172-0.26172 0.62109-0.41016 0.99219-0.41016s0.72656 0.14844 0.98828 0.41016l13.562 13.566c0.26562 0.26172 0.41016 0.61719 0.41016 0.98828s-0.14453 0.72656-0.41016 0.98828l-4.5195 4.5195v0.003906c-0.26172 0.26172-0.61719 0.41016-0.98828 0.41016zm-11.582-14.965 11.582 11.586 2.5391-2.543-11.582-11.586z"/>
  </g>
 
-            <h1>free and fast delivery</h1>
+            <h1>title 3</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
               labore esse accusamus, voluptatem quam perferendis id iure fuga
@@ -255,38 +255,6 @@ class LandingPageView extends view {
           }" data-hash ="#shop" ${
       this._data.results == 0 ? "disabled" : ""
     } >load more</button>
-        </div>
-        <div class="store-stats">
-          <ul>
-            <li>
-              <h1>100+</h1>
-              <p>
-                recipe <br />
-                available
-              </p>
-            </li>
-            <li>
-              <h1>10+</h1>
-              <p>
-                author <br />
-                worldwide
-              </p>
-            </li>
-            <li>
-              <h1>11</h1>
-              <p>
-                ingredient <br />
-                published
-              </p>
-            </li>
-            <li>
-              <h1>11</h1>
-              <p>
-                ingredient <br />
-                published
-              </p>
-            </li>
-          </ul>
         </div>
       </section>
 `;
