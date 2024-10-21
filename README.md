@@ -1,13 +1,17 @@
 # Website Overview
 
 - Home Page
-  ![Screenshot_14-10-2024_231449_localhost](https://github.com/user-attachments/assets/2d227fa7-0cd1-4f81-9716-f305c686cb9b)
+  
+![main](https://github.com/user-attachments/assets/e6dd3c54-d4c2-4112-90e2-8ffb9ceb40a3)
 
-- Store Page
-  ![Screenshot_14-10-2024_231530_localhost](https://github.com/user-attachments/assets/ab028b67-4f10-4067-84b9-c138d5460ca1)
+- Recipes Page
+  
+![recipes](https://github.com/user-attachments/assets/02e22899-d7f8-4ea3-afdb-2571c40f5ffc)
 
 - Product Page
-  ![Screenshot_14-10-2024_231553_localhost](https://github.com/user-attachments/assets/f2ba93ae-c898-4aac-b8e6-dee9cc15e1c0)
+  
+![info](https://github.com/user-attachments/assets/bbbaff0c-9108-4490-9cdd-7eae72add5cb)
 
 - Bookmarks Page
-  ![Screenshot_14-10-2024_231612_localhost](https://github.com/user-attachments/assets/7e2c1fff-9438-4358-9ccb-0390f7edd946)
+
+![bookmarks](https://github.com/user-attachments/assets/19b40393-7531-4392-95fd-54700a9fc9c5)
